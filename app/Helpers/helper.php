@@ -46,7 +46,7 @@ if (! function_exists('errBack'))
 
 if (! function_exists('user'))
 {
-    function user($getId = false)
+    function user()
     {
         return \Illuminate\Support\Facades\Auth::user();
     }
@@ -54,7 +54,7 @@ if (! function_exists('user'))
 
 if (! function_exists('uid'))
 {
-    function uid($getId = false)
+    function uid()
     {
         return \Illuminate\Support\Facades\Auth::id();
     }

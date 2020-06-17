@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Post;
 use Illuminate\Console\Command;
 
 class test extends Command

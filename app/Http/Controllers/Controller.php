@@ -8,6 +8,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class Controller extends BaseController
 {
@@ -58,11 +59,23 @@ class Controller extends BaseController
         return '';
     }
 
+    protected function modelClass()
+    {
+        return 'App\\Models\\' . ucfirst($this->model());
+    }
+
+    protected function modelPlural()
+    {
+        return Str::plural($this->model());
+    }
+
     protected function view($view, $para = [])
     {
         $model = $this->model();
+        $modelClass = $this->modelClass();
         $initPara = [
             'm' => $model,
+            'modelClass' => $modelClass,
         ];
         return view($model . '.' . $view, array_merge($initPara, $para));
     }

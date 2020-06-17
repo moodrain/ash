@@ -4,4 +4,4 @@
         $search[$key] = request('search.' . $key);
     }
 @endphp
-search: @json($search)
+search: @json($search),

@@ -17,10 +17,10 @@
     <el-table :data="list" height="560" border  @selection-change="selectChange">
         <el-table-column type="selection" width="55"></el-table-column>
         <el-table-column prop="id" label="ID" width="60"></el-table-column>
-        <el-table-column prop="name" label="name"></el-table-column>
-        <el-table-column prop="abstract" label="abstract"></el-table-column>
-        <el-table-column prop="user.name" label="user"></el-table-column>
-        <el-table-column prop="createdAt" label="createdAt" width="160"></el-table-column>
+        <el-table-column prop="name" label="Name"></el-table-column>
+        <el-table-column prop="abstract" label="Abstract"></el-table-column>
+        <el-table-column prop="user.name" label="User"></el-table-column>
+        <el-table-column prop="createdAt" label="CreatedAt" width="160"></el-table-column>
         <x-list-body-col :m="$m" />
     </el-table>
     <x-pager />

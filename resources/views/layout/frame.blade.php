@@ -13,16 +13,10 @@
                 style="height: 100%;width: 100%" :default-active="menuActive" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
 
                 <el-container style="width: 100%;height: 60px;line-height: 60px;">
-                    <p style="color: white;font-size: 1.4em;width: 100%;text-align: center;user-select: none">Ash</p>
+                    <p style="color: white;font-size: 1.4em;width: 100%;text-align: center;user-select: none">{{ env('APP_NAME') }}</p>
                 </el-container>
 
-                <a href="/"><el-menu-item index="dashboard">Dashboard</el-menu-item></a>
-
-                <el-submenu index="post">
-                    <template slot="title">Post</template>
-                    <a href="/post/list"><el-menu-item index="post-list">Post List</el-menu-item></a>
-                    <a href="/post/edit"><el-menu-item index="post-edit">Post Edit</el-menu-item></a>
-                </el-submenu>
+                @include('layout.frame-aside')
 
             </el-menu>
 

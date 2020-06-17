@@ -95,7 +95,7 @@ if (! function_exists('mDate'))
     }
 }
 
-if(! function_exists('ext'))
+if (! function_exists('ext'))
 {
     function ext($path)
     {
@@ -104,7 +104,7 @@ if(! function_exists('ext'))
     }
 }
 
-if(! function_exists('singleUser')) {
+if (! function_exists('singleUser')) {
     function singleUser()
     {
         return config('app.single_user') ? App\Models\User::query()->find(config('app.single_user')) : false;

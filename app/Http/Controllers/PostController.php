@@ -10,7 +10,7 @@ class PostController extends Controller
     public function list()
     {
         $builder = $this->mSearch($this->builder())->with('user');
-        return $this->view('list', ['list' => $builder->paginate()]);
+        return $this->view('list', ['l' => $builder->paginate()]);
     }
 
     public function edit()

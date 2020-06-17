@@ -49,9 +49,9 @@ class Controller extends BaseController
         return $this->validate(request(), $rules);
     }
 
-    protected function builder()
+    protected function builder(): \Illuminate\Database\Eloquent\Builder
     {
-        return null;
+        return call_user_func([$this->modelClass(), 'query']);
     }
 
     protected function model()

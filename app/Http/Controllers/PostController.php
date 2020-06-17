@@ -12,11 +12,6 @@ class PostController extends Controller
         return 'post';
     }
 
-    protected function builder()
-    {
-        return Post::query();
-    }
-
     public function list()
     {
         $builder = $this->mSearch($this->builder())->with('user');

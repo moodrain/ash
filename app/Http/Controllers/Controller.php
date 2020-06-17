@@ -14,6 +14,8 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    protected $model = '';
+
     public function __construct()
     {
         $this->initSearch();
@@ -56,7 +58,7 @@ class Controller extends BaseController
 
     protected function model()
     {
-        return '';
+        return $this->model;
     }
 
     protected function modelClass()

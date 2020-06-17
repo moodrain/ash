@@ -7,10 +7,7 @@ use App\Models\Post;
 class PostController extends Controller
 {
 
-    protected function model()
-    {
-        return 'post';
-    }
+    protected $model = 'post';
 
     public function list()
     {

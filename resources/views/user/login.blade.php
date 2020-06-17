@@ -4,7 +4,7 @@
     <div id="app">
         <br />
         <el-row>
-            <el-col :span="10" :offset="6">
+            <el-col :xs="{span:20,offset:2}" :lg="{span:6,offset:9}">
                 <el-card>
                     <el-form>
                         <x-input exp="model:form.email;pre:Email"></x-input>
@@ -22,34 +22,34 @@
 @endsection
 
 @section('js')
-@include('layout.js')
-<script>
-    let vue = new Vue({
-        el: '#app',
-        data () {
-            return {
-                @component('piece.data')@endcomponent
-                form: {
-                    email: '{{ old('email') }}',
-                    password: '',
+    @include('layout.js')
+    <script>
+        let vue = new Vue({
+            el: '#app',
+            data () {
+                return {
+                    @component('piece.data')@endcomponent
+                    form: {
+                        email: '{{ old('email') }}',
+                        password: '',
+                    }
                 }
-            }
-        },
-        methods: {
-            @component('piece.method')@endcomponent
-            login () {
-                if (! this.form.email || ! this.form.password) {
-                    return
+            },
+            methods: {
+                @component('piece.method')@endcomponent
+                login () {
+                    if (! this.form.email || ! this.form.password) {
+                        return
+                    }
+                    $submit(this.form)
                 }
-                $submit(this.form)
+            },
+            mounted() {
+                @component('piece.init')@endcomponent
             }
-        },
-        mounted() {
-            @component('piece.init')@endcomponent
-        }
-    })
-    $enter(() => { vue.login() })
-</script>
+        })
+        $enter(() => { vue.login() })
+    </script>
 @endsection
 
 @section('css')

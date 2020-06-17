@@ -3,8 +3,8 @@
 @section('title', 'Dashboard')
 
 @section('main')
-    <el-row id="app">
-        <el-col :span="8" :offset="8">
+    <el-row>
+        <el-col :xs="{span:18,offset:3}" :lg="{span:8,offset:8}">
             <br />
             <el-card>
                 <br />

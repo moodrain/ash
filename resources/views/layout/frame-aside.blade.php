@@ -1,7 +1,7 @@
-<a href="/"><el-menu-item index="dashboard">Dashboard</el-menu-item></a>
+<el-menu-item index="dashboard" @click="$to('/')">Dashboard</el-menu-item>
 
 <el-submenu index="post">
     <template slot="title">Post</template>
-    <a href="/post/list"><el-menu-item index="post-list">Post List</el-menu-item></a>
-    <a href="/post/edit"><el-menu-item index="post-edit">Post Edit</el-menu-item></a>
+    <el-menu-item index="post-list" @click="$to('/post/list')">Post List</el-menu-item>
+    <el-menu-item index="post-edit" @click="$to('/post/edit')">Post Edit</el-menu-item>
 </el-submenu>

@@ -21,7 +21,7 @@
     </div>
 @endsection
 
-@section('js')
+@section('script')
 <script>
     let vue = new Vue({
         el: '#app',

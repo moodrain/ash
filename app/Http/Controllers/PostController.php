@@ -39,7 +39,7 @@ class PostController extends Controller
     public function update()
     {
         $rules = [
-            'id' => 'required|exists:' . $this->modelPlural(),
+            'id' => 'required|exists:' . $this->table(),
             'name' => 'required',
             'abstract' => '',
         ];
@@ -53,9 +53,9 @@ class PostController extends Controller
     public function destroy()
     {
         $rules = [
-            'id' => 'required_without:ids|exists:' . $this->modelPlural(),
+            'id' => 'required_without:ids|exists:' . $this->table(),
             'ids' => 'required_without:id|array',
-            'ids.*' => 'exists:' . $this->modelPlural() . ',id',
+            'ids.*' => 'exists:' . $this->table() . ',id',
         ];
         $this->vld($rules);
         $ids = request('ids') ?? [];

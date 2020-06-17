@@ -66,9 +66,9 @@ class Controller extends BaseController
         return 'App\\Models\\' . ucfirst($this->model());
     }
 
-    protected function modelPlural()
+    protected function table()
     {
-        return Str::plural($this->model());
+        return (new $this->modelClass())->getTable();
     }
 
     protected function view($view, $para = [])

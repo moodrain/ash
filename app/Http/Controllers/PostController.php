@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
-
 class PostController extends Controller
 {
 
@@ -41,7 +39,7 @@ class PostController extends Controller
     public function update()
     {
         $rules = [
-            'id' => 'required|exists:posts',
+            'id' => 'required|exists:' . $this->modelPlural(),
             'name' => 'required',
             'abstract' => '',
         ];
@@ -55,9 +53,9 @@ class PostController extends Controller
     public function destroy()
     {
         $rules = [
-            'id' => 'required_without:ids|exists:posts',
+            'id' => 'required_without:ids|exists:' . $this->modelPlural(),
             'ids' => 'required_without:id|array',
-            'ids.*' => 'exists:posts,id',
+            'ids.*' => 'exists:' . $this->modelPlural() . ',id',
         ];
         $this->vld($rules);
         $ids = request('ids') ?? [];

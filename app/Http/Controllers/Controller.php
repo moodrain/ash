@@ -67,7 +67,8 @@ class Controller extends BaseController
 
     protected function table()
     {
-        return (new $this->modelClass())->getTable();
+        $class = $this->modelClass();
+        return (new $class)->getTable();
     }
 
     protected function view($view, $para = [])

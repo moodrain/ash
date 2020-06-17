@@ -94,4 +94,9 @@ class Controller extends BaseController
         return redirect()->back()->withInput()->with('msg', __('msg.success'));
     }
 
+    protected function backErr($errMsg)
+    {
+        return redirect()->back()->withInput()->withErrors(__($errMsg));
+    }
+
 }

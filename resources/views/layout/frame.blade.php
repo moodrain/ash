@@ -55,38 +55,11 @@
 
 
 @section('js')
-    <script src="https://s1.moodrain.cn/lib/rium/index.js"></script>
-    <script src="https://s1.moodrain.cn/lib/vue/index.js"></script>
-    <script src="https://s1.moodrain.cn/lib/element-ui/index.js"></script>
-    <script>
-        $bindVue(Vue)
-    </script>
+    @include('layout.js')
     @yield('script')
 @endsection
 
 @section('css')
-    <link href="https://s1.moodrain.cn/lib/element-ui/index.css" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            scrollbar-width: none
-        }
-        html, body, #app {
-            width: 100%;
-            height: 100%;
-        }
-        a {
-            text-decoration: none;
-            color: black;
-        }
-        ::-webkit-scrollbar {
-            width: 0;
-            height: 0
-        }
-        .el-tag {
-            margin: 2px;
-        }
-    </style>
+    @include('layout.css')
     @yield('style')
 @endsection

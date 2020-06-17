@@ -21,7 +21,8 @@
     </div>
 @endsection
 
-@section('script')
+@section('js')
+@include('layout.js')
 <script>
     let vue = new Vue({
         el: '#app',
@@ -49,4 +50,8 @@
     })
     $enter(() => { vue.login() })
 </script>
+@endsection
+
+@section('css')
+    @include('layout.css')
 @endsection

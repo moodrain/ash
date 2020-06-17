@@ -23,39 +23,44 @@
     </div>
 @endsection
 
-@section('script')
-    <script>
-        let vue = new Vue({
-            el: '#app',
-            data () {
-                return {
-                    @component('piece.data')@endcomponent
-                    form: {
-                        email: '{{ old('email') }}',
-                        name: '{{ old('name') }}',
-                        password: '',
-                        re_password: '',
-                    }
+@section('js')
+@include('layout.js')
+<script>
+    let vue = new Vue({
+        el: '#app',
+        data () {
+            return {
+                @component('piece.data')@endcomponent
+                form: {
+                    email: '{{ old('email') }}',
+                    name: '{{ old('name') }}',
+                    password: '',
+                    re_password: '',
                 }
-            },
-            methods: {
-                @component('piece.method')@endcomponent
-                register () {
-                    if (! this.form.email || ! this.form.password || ! this.form.name) {
-                        alert('some inputs are empty')
-                        return
-                    }
-                    if (this.form.password != this.form.re_password) {
-                        alert('password not equal re password')
-                        return
-                    }
-                    $submit(this.form)
-                }
-            },
-            mounted() {
-                @component('piece.init')@endcomponent
             }
-        })
-        $enter(() => { vue.submit() })
-    </script>
+        },
+        methods: {
+            @component('piece.method')@endcomponent
+            register () {
+                if (! this.form.email || ! this.form.password || ! this.form.name) {
+                    alert('some inputs are empty')
+                    return
+                }
+                if (this.form.password != this.form.re_password) {
+                    alert('password not equal re password')
+                    return
+                }
+                $submit(this.form)
+            }
+        },
+        mounted() {
+            @component('piece.init')@endcomponent
+        }
+    })
+    $enter(() => { vue.submit() })
+</script>
+@endsection
+
+@section('css')
+    @include('layout.css')
 @endsection

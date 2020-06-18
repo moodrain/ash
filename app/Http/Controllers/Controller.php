@@ -8,7 +8,6 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class Controller extends BaseController
 {
@@ -80,6 +79,8 @@ class Controller extends BaseController
             'm' => $model,
             'modelClass' => $modelClass,
         ];
+        empty($para['d']) && $initPara['d'] = null;
+        empty($para['l']) && $initPara['l'] = [];
         return view($model . '.' . $view, array_merge($initPara, $para));
     }
 

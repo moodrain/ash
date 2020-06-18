@@ -27,7 +27,7 @@
                 form: {
                     id: {{ bv('id', null) }},
                     name: '{{ bv('name') }}',
-                    abstract: '{{ bv('extract') }}',
+                    abstract: '{{ bv('abstract') }}',
                 },
             }
         },

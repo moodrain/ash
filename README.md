@@ -17,6 +17,7 @@ starter of Laravel & Vue & ElementUI & Rium
 > set providers.user.model App\Models\User
 * config/session.php
 > set lifetime 60 * 24 * 30
+> set encrypt true
 * database/create_posts_table.php
 * database/seeds/DatabaseSeeder.php 
 > add user and post seeds

@@ -19,16 +19,16 @@
 
 @section('script')
 <script>
-    new Vue({
+    let vue = new Vue({
         el: '#app',
         data () {
+            @include('piece.edit-data')
             return {
                 form: {
-                    id: {{ $d->id ?? 'null' }},
-                    name: '{{ $d->name ?? '' }}',
-                    abstract: '{{ $d->abstract ?? '' }}',
+                    id: {{ bv('id', null) }},
+                    name: '{{ bv('name') }}',
+                    abstract: '{{ bv('extract') }}',
                 },
-                @include('piece.edit-data')
             }
         },
         methods: {
@@ -38,5 +38,6 @@
             @include('piece.init')
         }
     })
+    $enter(() => $submit(vue.form))
 </script>
 @endsection

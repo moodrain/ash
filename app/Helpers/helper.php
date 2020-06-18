@@ -104,9 +104,31 @@ if (! function_exists('ext'))
     }
 }
 
-if (! function_exists('singleUser')) {
+if (! function_exists('singleUser'))
+{
     function singleUser()
     {
         return config('app.single_user') ? App\Models\User::query()->find(config('app.single_user')) : false;
+    }
+}
+
+if (! function_exists('bv')) {
+    function bv($objOrProp, $default = '')
+    {
+        static $obj;
+        if(is_string($objOrProp)) {
+            $prop = $objOrProp;
+            $default === null && $default = 'null';
+            if (! $obj) {
+                return old($prop) ?? $default;
+            }
+            if (is_object($obj)) {
+                return $obj->$prop ?? old($prop) ?? $default;
+            } elseif (is_array($obj)) {
+                return $obj[$prop] ?? old($prop) ?? $default;
+            }
+            return $default;
+        }
+        $obj = $objOrProp;
     }
 }

@@ -48,7 +48,7 @@
                 @component('piece.init')@endcomponent
             }
         })
-        $enter(() => { vue.login() })
+        $enter(() => vue.login())
     </script>
 @endsection
 

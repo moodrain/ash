@@ -22,8 +22,8 @@
     let vue = new Vue({
         el: '#app',
         data () {
-            @include('piece.edit-data')
             return {
+                @include('piece.edit-data')
                 form: {
                     id: {{ bv('id', null) }},
                     name: '{{ bv('name') }}',

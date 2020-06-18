@@ -123,9 +123,9 @@ if (! function_exists('bv')) {
                 return old($prop) ?? $default;
             }
             if (is_object($obj)) {
-                return $obj->$prop ?? old($prop) ?? $default;
+                return old($prop) ?? $obj->$prop ?? $default;
             } elseif (is_array($obj)) {
-                return $obj[$prop] ?? old($prop) ?? $default;
+                return old($prop) ?? $obj[$prop] ?? $default;
             }
             return $default;
         }

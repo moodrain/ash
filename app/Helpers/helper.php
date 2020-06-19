@@ -132,3 +132,13 @@ if (! function_exists('bv')) {
         $obj = $objOrProp;
     }
 }
+
+if (! function_exists('sendMail'))
+{
+    function sendMail($to, $subject, $content)
+    {
+        \Illuminate\Support\Facades\Mail::raw($content, function(\Illuminate\Mail\Message $msg) use ($to, $subject) {
+            $msg->to($to)->subject($subject);
+        });
+    }
+}

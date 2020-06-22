@@ -137,7 +137,7 @@ if (! function_exists('sendMail'))
 {
     function sendMail($to, $subject, $content)
     {
-        \Illuminate\Support\Facades\Mail::raw($content, function(\Illuminate\Mail\Message $msg) use ($to, $subject) {
+        \Illuminate\Support\Facades\Mail::html($content, function(\Illuminate\Mail\Message $msg) use ($to, $subject) {
             $msg->to($to)->subject($subject);
         });
     }

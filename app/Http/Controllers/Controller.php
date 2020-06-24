@@ -75,7 +75,7 @@ class Controller extends BaseController
 
     protected function view($view, $para = [])
     {
-        $model = $this->model();
+        $model = Str::snake(Str::camel($this->model()), '-');
         $modelClass = $this->modelClass();
         $initPara = [
             'm' => $model,
@@ -83,7 +83,7 @@ class Controller extends BaseController
         ];
         empty($para['d']) && $initPara['d'] = null;
         empty($para['l']) && $initPara['l'] = [];
-        return view(Str::snake(Str::camel($model), '-') . '.' . $view, array_merge($initPara, $para));
+        return view($model . '.' . $view, array_merge($initPara, $para));
     }
 
     protected function viewOk($view, $para = [])

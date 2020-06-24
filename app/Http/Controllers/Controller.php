@@ -15,6 +15,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     protected $model = '';
+    protected $rules = [];
 
     public function __construct()
     {
@@ -47,8 +48,8 @@ class Controller extends BaseController
         return $builder->search($this->search)->sort();
     }
 
-    protected function vld($rules) {
-        return $this->validate(request(), $rules);
+    protected function vld() {
+        return $this->validate(request(), $this->rules);
     }
 
     protected function builder(): \Illuminate\Database\Eloquent\Builder

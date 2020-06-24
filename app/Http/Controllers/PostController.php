@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Validation\Rule;
+
 class PostController extends Controller
 {
 
@@ -16,48 +18,46 @@ class PostController extends Controller
     public function edit()
     {
         if (request()->isMethod('post')) {
-            return request('id') ? $this->update() : $this->store();
+            $isUpdate = request()->filled('id');
+            $this->rules = [
+                'abstract' => '',
+            ];
+            $this->rules['name'] = $isUpdate
+                ? ['required', Rule::unique($this->table())->ignore(request('id'))]
+                : 'required|unique:' . $this->table();
+            $isUpdate && $this->rules['id'] = 'exists:' . $this->table();
+            $this->vld();
+            return $isUpdate ? $this->update() : $this->store();
         }
         return $this->view('edit', [
             'd' => request('id') ? $this->builder()->find(request('id')) : null,
         ]);
     }
 
-    public function store()
+    private function store()
     {
-        $rules = [
-            'name' => 'required',
-            'abstract' => '',
-        ];
-        $this->vld($rules);
-        $item = $this->builder()->newModelInstance(request()->only(array_keys($rules)));
+        $item = $this->builder()->newModelInstance(request()->only(array_keys($this->rules)));
         $item->userId = uid();
         $item->save();
         return $this->viewOk('edit');
     }
 
-    public function update()
+    private function update()
     {
-        $rules = [
-            'id' => 'required|exists:' . $this->table(),
-            'name' => 'required',
-            'abstract' => '',
-        ];
-        $this->vld($rules);
         $item = $this->builder()->find(request('id'));
-        $item->fill(request()->only(array_keys($rules)));
+        $item->fill(request()->only(array_keys($this->rules)));
         $item->save();
         return $this->viewOk('edit', ['d' => $item]);
     }
 
     public function destroy()
     {
-        $rules = [
+        $this->rules = [
             'id' => 'required_without:ids|exists:' . $this->table(),
             'ids' => 'required_without:id|array',
             'ids.*' => 'exists:' . $this->table() . ',id',
         ];
-        $this->vld($rules);
+        $this->vld();
         $ids = request('ids') ?? [];
         request('id') && $ids[] = request('id');
         $this->builder()->whereIn('id', $ids)->delete();

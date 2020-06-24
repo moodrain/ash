@@ -83,7 +83,7 @@ class Controller extends BaseController
         ];
         empty($para['d']) && $initPara['d'] = null;
         empty($para['l']) && $initPara['l'] = [];
-        return view($model . '.' . $view, array_merge($initPara, $para));
+        return view(Str::snake(Str::camel($model), '-') . '.' . $view, array_merge($initPara, $para));
     }
 
     protected function viewOk($view, $para = [])

@@ -1,44 +1,49 @@
 @php(extract(bladeIncludeExp($exp ?? '')))
 <el-form-item
 
-    @isset($if)
+        @isset($if)
         v-if="{{ $if }}"
-    @endisset
+        @endisset
 
-    @isset($class)
+        @isset($class)
         class="{{ $class }}"
-    @endisset
+        @endisset
 
-    @isset($label)
+        @isset($label)
         label="{{ $label }}"
-    @endisset
+        @endisset
 
 >
     <el-input
 
-        @isset($ref)
+            @isset($ref)
             ref="{{ $ref }}"
-        @endisset
+            @endisset
 
-        @isset($model)
+            @isset($model)
             v-model="{{ $model }}"
-        @endisset
+            @endisset
 
-        @isset($value)
+            @isset($value)
             :value="{{ $value }}"
-        @endisset
+            @endisset
 
-        @isset($type)
+            @isset($type)
             type="{{ $type }}"
-        @endisset
 
-        @isset($disabled)
+            @if($type == 'textarea')
+            autosize
+            @endif
+
+            @endisset
+
+            @isset($disabled)
             disabled
-        @endisset
+            @endisset
 
-        @isset($change)
+            @isset($change)
             @change="{{ $change }}"
-        @endisset
+            @endisset
 
     >
 

@@ -2,6 +2,15 @@
 
 return [
 
+    // 0 => index, 1 => name, 2 => url/submenu
+    'nav' => [
+        ['dashboard', 'Dashboard', ''],
+        ['post', 'Post', [
+            ['post-list', 'Post List', 'post/list'],
+            ['post-edit', 'Post Edit', 'post/edit'],
+        ]],
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | View Storage Paths

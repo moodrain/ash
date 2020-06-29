@@ -20,6 +20,8 @@ starter of Laravel & Vue & ElementUI & Rium
 * config/session.php
 > set lifetime 60 * 24 * 30
 > set encrypt true
+* config/view.php
+> add navigation bar config
 * database/create_posts_table.php
 * database/seeds/DatabaseSeeder.php 
 > add user and post seeds

@@ -30,7 +30,7 @@
             el: '#app',
             data() {
                 return {
-                    @component('piece.data')@endcomponent
+                    @include('piece.data')
                     form: {
                         email: '{{ old('email') }}',
                         name: '{{ old('name') }}',
@@ -40,7 +40,7 @@
                 }
             },
             methods: {
-                @component('piece.method')@endcomponent
+                @include('piece.method')
                 register() {
                     if (! this.form.email || ! this.form.password || ! this.form.name) {
                         alert('some inputs are empty')
@@ -54,7 +54,7 @@
                 }
             },
             mounted() {
-                @component('piece.init')@endcomponent
+                @include('piece.init')
             }
         })
         $enter(() => vue.register())

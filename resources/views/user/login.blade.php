@@ -28,7 +28,7 @@
             el: '#app',
             data() {
                 return {
-                    @component('piece.data')@endcomponent
+                    @include('piece.data')
                     form: {
                         email: '{{ old('email') }}',
                         password: '',
@@ -36,7 +36,7 @@
                 }
             },
             methods: {
-                @component('piece.method')@endcomponent
+                @include('piece.method')
                 login() {
                     if (! this.form.email || ! this.form.password) {
                         return
@@ -45,7 +45,7 @@
                 }
             },
             mounted() {
-                @component('piece.init')@endcomponent
+                @include('piece.init')
             }
         })
         $enter(() => vue.login())

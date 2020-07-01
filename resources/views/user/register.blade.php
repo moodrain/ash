@@ -10,7 +10,7 @@
                         <x-input exp="model:form.email;pre:Email"></x-input>
                         <x-input exp="model:form.name;pre:Name"></x-input>
                         <x-input exp="model:form.password;pre:Password;type:password"></x-input>
-                        <x-input exp="model:form.re_password;pre:RePassword;type:password"></x-input>
+                        <x-input exp="model:form.rePassword;pre:RePassword;type:password"></x-input>
                         <el-form-item>
                             <el-button @click="register">Register</el-button>
                             <el-divider direction="vertical"></el-divider>
@@ -28,25 +28,25 @@
     <script>
         let vue = new Vue({
             el: '#app',
-            data () {
+            data() {
                 return {
                     @component('piece.data')@endcomponent
                     form: {
                         email: '{{ old('email') }}',
                         name: '{{ old('name') }}',
                         password: '',
-                        re_password: '',
+                        rePassword: '',
                     }
                 }
             },
             methods: {
                 @component('piece.method')@endcomponent
-                register () {
+                register() {
                     if (! this.form.email || ! this.form.password || ! this.form.name) {
                         alert('some inputs are empty')
                         return
                     }
-                    if (this.form.password != this.form.re_password) {
+                    if (this.form.password != this.form.rePassword) {
                         alert('password not equal re password')
                         return
                     }
@@ -57,7 +57,7 @@
                 @component('piece.init')@endcomponent
             }
         })
-        $enter(() => vue.submit())
+        $enter(() => vue.register())
     </script>
 @endsection
 

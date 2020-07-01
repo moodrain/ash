@@ -26,7 +26,7 @@
     <script>
         let vue = new Vue({
             el: '#app',
-            data () {
+            data() {
                 return {
                     @component('piece.data')@endcomponent
                     form: {
@@ -37,7 +37,7 @@
             },
             methods: {
                 @component('piece.method')@endcomponent
-                login () {
+                login() {
                     if (! this.form.email || ! this.form.password) {
                         return
                     }

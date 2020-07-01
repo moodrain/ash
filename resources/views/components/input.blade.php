@@ -14,42 +14,46 @@
         @endisset
 
 >
-    <el-input
+        <el-input
 
-            @isset($ref)
-            ref="{{ $ref }}"
-            @endisset
+                @isset($ref)
+                ref="{{ $ref }}"
+                @endisset
 
-            @isset($model)
-            v-model="{{ $model }}"
-            @endisset
+                @isset($model)
+                v-model="{{ $model }}"
+                @endisset
 
-            @isset($value)
-            :value="{{ $value }}"
-            @endisset
+                @isset($value)
+                :value="{{ $value }}"
+                @endisset
 
-            @isset($type)
-            type="{{ $type }}"
+                @isset($type)
+                type="{{ $type }}"
 
-            @if($type == 'textarea')
-            autosize
-            @endif
+                @if($type == 'textarea')
+                autosize
+                @endif
 
-            @endisset
+                @endisset
 
-            @isset($disabled)
-            disabled
-            @endisset
+                @isset($disabled)
+                disabled
+                @endisset
 
-            @isset($change)
-            @change="{{ $change }}"
-            @endisset
+                @isset($change)
+                @change="{{ $change }}"
+                @endisset
 
-    >
+                @isset($holder)
+                placeholder="{{ $holder }}"
+                @endisset
 
-        @isset($pre)
-            <template slot="prepend">{{ $pre }}</template>
-        @endisset
+        >
 
-    </el-input>
+                @isset($pre)
+                        <template slot="prepend">{{ $pre }}</template>
+                @endisset
+
+        </el-input>
 </el-form-item>

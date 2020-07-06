@@ -119,15 +119,19 @@ if (! function_exists('bv')) {
         if(is_string($objOrProp)) {
             $prop = $objOrProp;
             $default === null && $default = 'null';
+            $return = $default;
             if (! $obj) {
-                return old($prop) ?? $default;
+                $return = old($prop) ?? $default;
             }
             if (is_object($obj)) {
-                return old($prop) ?? $obj->$prop ?? $default;
+                $return = old($prop) ?? $obj->$prop ?? $default;
             } elseif (is_array($obj)) {
-                return old($prop) ?? $obj[$prop] ?? $default;
+                $return = old($prop) ?? $obj[$prop] ?? $default;
             }
-            return $default;
+            if ($return instanceof \Illuminate\Support\Collection || $return instanceof \Illuminate\Database\Eloquent\Collection) {
+                return $return->pluck('id')->all();
+            }
+            return $return;
         }
         $obj = $objOrProp;
     }

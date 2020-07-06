@@ -2,11 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::view('/login', 'user.login')->name('login');
-Route::view('register', 'user.register');
-Route::post('login', 'UserController@login');
-Route::post('register', 'UserController@register');
-
+Route::any('login', 'UserController@login')->name('login');
+Route::any('register', 'UserController@register');
 
 Route::middleware(['auth'])->group(function() {
 

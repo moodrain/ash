@@ -9,6 +9,12 @@ class UserController extends Controller {
 
     public function login()
     {
+        if (request()->isMethod('get')) {
+            if (Auth::check()) {
+                return redirect('/');
+            }
+            return view('user.login');
+        }
         $this->validate(request(), [
             'email' => 'required|email',
             'password' => 'required',
@@ -30,6 +36,9 @@ class UserController extends Controller {
 
     public function register()
     {
+        if (request()->isMethod('get')) {
+            return view('user.login');
+        }
         $this->validate(request(), [
             'email' => 'required|unique:users,email',
             'name' => 'required',

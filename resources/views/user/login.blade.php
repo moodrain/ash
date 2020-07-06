@@ -4,11 +4,11 @@
     <div id="app">
         <br />
         <el-row>
-            <el-col :xs="{span:20,offset:2}" :lg="{span:6,offset:9}">
+            <el-col :span="6" :offset="9" :xs="{span:20,offset:2}">
                 <el-card>
                     <el-form>
-                        <x-input exp="model:form.email;pre:Email"></x-input>
-                        <x-input exp="model:form.password;pre:Password;type:password"></x-input>
+                        <x-input exp="model:form.email;pre:Email" />
+                        <x-input exp="model:form.password;pre:Password;type:password" />
                         <el-form-item>
                             <el-button @click="login">Login</el-button>
                             <el-divider direction="vertical"></el-divider>

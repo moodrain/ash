@@ -20,10 +20,17 @@
                     break;
                 case 'f':
                     $val = (float) $val;
+                    break;
+                case 'a':
+                    $elemType = $keyInfo[2] ?? 's';
+                    $val = (array) $val;
+                    foreach($val as & $v) {
+                        $v = $elemType == 's' ? (string) $v : (int) $v;
+                    }
             }
             $search[$key] = $val;
         }
-
     }
+
 @endphp
 search: @json($search),

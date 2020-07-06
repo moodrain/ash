@@ -4,9 +4,9 @@
 
 @section('main')
     <el-row>
-        <el-col :xs="{span:22,offset:1}" :lg="8">
+        <el-col :span="8" :xs="{span:22,offset:1}">
             <el-card>
-                <el-form label-width="80px">
+                <el-form>
                     <x-edit-id :d="$d"></x-edit-id>
                     <x-input exp="model:form.name;label:Name"></x-input>
                     <x-input exp="model:form.abstract;label:Abstract"></x-input>

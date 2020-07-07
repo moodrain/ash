@@ -1,1 +1,1 @@
-<el-button @click="$submit(form)">{{ ! empty($d) ? 'Update' : 'Create' }}</el-button>
+<el-button @click="$submit(form)">{{ isset($d) && data_get($d, 'id') ? 'Update' : 'Create' }}</el-button>

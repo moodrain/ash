@@ -100,7 +100,7 @@ if (! function_exists('ext'))
     function ext($path)
     {
         $info = pathinfo($path);
-        return $info['extension'] ?? null;
+        return empty($info['extension']) ? null : strtolower($info['extension']);
     }
 }
 

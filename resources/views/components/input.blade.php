@@ -41,6 +41,10 @@
                 disabled
                 @endisset
 
+                @isset($readonly)
+                readonly
+                @endisset
+
                 @isset($change)
                 @change="{{ $change }}"
                 @endisset

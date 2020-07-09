@@ -35,6 +35,15 @@ if (! function_exists('rs'))
         return response()->json(compact('code', 'msg', 'data'));
     }
 }
+
+if (! function_exists('ers'))
+{
+    function ers($msg = '', $code = 1, $data = [])
+    {
+        return response()->json(compact('code', 'msg', 'data'));
+    }
+}
+
 if (! function_exists('errBack'))
 {
     function errBack($msg)

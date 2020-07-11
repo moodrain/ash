@@ -155,3 +155,19 @@ if (! function_exists('sendMail'))
         });
     }
 }
+
+if (! function_exists('startWith'))
+{
+    function startWith($start, $str)
+    {
+        return mb_substr($str, 0, 1) == $start ? $str : ($start . $str);
+    }
+}
+
+if (! function_exists('endWith'))
+{
+    function endWith($end, $str)
+    {
+        return mb_substr($str, mb_strlen($str) - 1, 1) == $end ? $str : ($str . $end);
+    }
+}

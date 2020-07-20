@@ -17,7 +17,7 @@ use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
 class Serve extends Command
 {
 
-    protected $signature = 'serve {host=127.0.0.1} {port=8000}';
+    protected $signature = 'serve {listen=127.0.0.1:8000}';
 
     protected $description = 'Command description';
 
@@ -48,7 +48,7 @@ class Serve extends Command
                 return new ReactResponse(500);
             }
         });
-        $server->listen(new \React\Socket\Server('127.0.0.1:8080', $loop));
+        $server->listen(new \React\Socket\Server($this->argument('listen'), $loop));
         $loop->run();
     }
 }

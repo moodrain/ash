@@ -9,7 +9,7 @@
         <x-input exp="model:search.name;pre:Name" />
         <x-select exp="model:search.userId;label:User;data:users;key:id;selectLabel:name;value:id" />
         <x-sort />
-        <x-list-head-btn :m="$m" />
+        <x-admin-list-head-btn :m="$m" />
     </el-form>
 </el-card>
 <br />
@@ -21,7 +21,7 @@
         <el-table-column prop="abstract" label="Abstract"></el-table-column>
         <el-table-column prop="user.name" label="User"></el-table-column>
         <el-table-column prop="createdAt" label="CreatedAt" width="160"></el-table-column>
-        <x-list-body-col :m="$m" />
+        <x-admin-list-body-col :m="$m" />
     </el-table>
     <x-pager />
 </el-card>

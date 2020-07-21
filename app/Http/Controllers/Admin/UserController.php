@@ -10,9 +10,6 @@ class UserController extends Controller {
     public function login()
     {
         if (request()->isMethod('get')) {
-            if (Auth::check()) {
-                return redirect('/admin');
-            }
             return $this->view('user.login');
         }
         $this->validate(request(), [

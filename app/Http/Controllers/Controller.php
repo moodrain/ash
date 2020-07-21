@@ -8,14 +8,10 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
-    protected $model = '';
-    protected $rules = [];
 
     public function __construct()
     {
@@ -48,47 +44,10 @@ class Controller extends BaseController
         return $builder->search($this->search)->sort();
     }
 
-    protected function vld() {
-        return $this->validate(request(), $this->rules);
-    }
-
-    protected function builder(): \Illuminate\Database\Eloquent\Builder
-    {
-        return call_user_func([$this->modelClass(), 'query']);
-    }
-
-    protected function model()
-    {
-        return $this->model;
-    }
-
-    protected function modelClass()
-    {
-        return 'App\\Models\\' . ucfirst(Str::camel($this->model()));
-    }
-
-    protected function table()
-    {
-        $class = $this->modelClass();
-        return (new $class)->getTable();
-    }
-
-    protected function view($view, $para = [])
-    {
-        $model = Str::snake(Str::camel($this->model()), '-');
-        $modelClass = $this->modelClass();
-        $initPara = [
-            'm' => $model,
-            'modelClass' => $modelClass,
-        ];
-        empty($para['d']) && $initPara['d'] = null;
-        empty($para['l']) && $initPara['l'] = [];
-        return view($model . '.' . $view, array_merge($initPara, $para));
-    }
 
     protected function viewOk($view, $para = [])
     {
-        return $this->view($view, array_merge($para, [
+        return view($view, array_merge($para, [
             'msg' => __('msg.success'),
         ]));
     }

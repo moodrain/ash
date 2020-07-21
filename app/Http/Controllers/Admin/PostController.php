@@ -6,7 +6,6 @@ use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
-
     protected $model = 'post';
 
     public function list()
@@ -52,12 +51,11 @@ class PostController extends Controller
 
     public function destroy()
     {
-        $this->rules = [
+        $this->vld([
             'id' => 'required_without:ids|exists:' . $this->table(),
             'ids' => 'required_without:id|array',
             'ids.*' => 'exists:' . $this->table() . ',id',
-        ];
-        $this->vld();
+        ]);
         $ids = request('ids') ?? [];
         request('id') && $ids[] = request('id');
         $this->builder()->whereIn('id', $ids)->delete();

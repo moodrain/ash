@@ -34,7 +34,8 @@ class Controller extends BaseController
         $this->search = $search;
     }
 
-    private function initSort() {
+    private function initSort()
+    {
         $sort = (array) request('sort');
         foreach ($sort as $key => $value) {
             if ($value === null || $value === '') {
@@ -44,11 +45,13 @@ class Controller extends BaseController
         $this->sort = $sort;
     }
 
-    protected function mSearch($builder): Builder {
+    protected function mSearch($builder): Builder
+    {
         return $builder->search($this->search)->sort();
     }
 
-    protected function vld($rules = null) {
+    protected function vld($rules = null)
+    {
         return $this->validate(request(), $rules ?? $this->rules);
     }
 

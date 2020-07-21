@@ -20,7 +20,8 @@ class Controller extends BaseController
         singleUser() && Auth::loginUsingId(singleUser()->id);
     }
 
-    private function initSearch() {
+    private function initSearch()
+    {
         $search = (array) request('search');
         foreach ($search as $key => $value) {
             if ($value === null || $value === '') {
@@ -30,7 +31,8 @@ class Controller extends BaseController
         $this->search = $search;
     }
 
-    private function initSort() {
+    private function initSort()
+    {
         $sort = (array) request('sort');
         foreach ($sort as $key => $value) {
             if ($value === null || $value === '') {

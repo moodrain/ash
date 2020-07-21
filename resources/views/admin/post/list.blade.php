@@ -1,6 +1,6 @@
 @extends('layout.frame')
 
-@include('piece.list-title')
+@include('admin.piece.list-title')
 
 @section('main')
 <el-card>
@@ -33,14 +33,14 @@
         el: '#app',
         data () {
             return {
-                @include('piece.list-data')
+                @include('admin.piece.list-data')
             }
         },
         methods: {
-            @include('piece.list-method')
+            @include('admin.piece.list-method')
         },
         mounted() {
-            @include('piece.init')
+            @include('admin.piece.init')
         }
     })
 </script>

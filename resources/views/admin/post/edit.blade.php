@@ -1,6 +1,6 @@
-@extends('layout.frame')
+@extends('admin.layout.frame')
 
-@include('piece.edit-title')
+@include('admin.piece.edit-title')
 
 @section('main')
     <el-row>
@@ -23,7 +23,7 @@
         el: '#app',
         data () {
             return {
-                @include('piece.edit-data')
+                @include('admin.piece.edit-data')
                 form: {
                     id: {{ bv('id', null) }},
                     name: '{{ bv('name') }}',
@@ -32,10 +32,10 @@
             }
         },
         methods: {
-            @include('piece.edit-method')
+            @include('admin.piece.edit-method')
         },
         mounted() {
-            @include('piece.init')
+            @include('admin.piece.init')
         }
     })
     $enter(() => $submit(vue.form))

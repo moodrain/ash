@@ -3,23 +3,32 @@
 @section('title')
 @endsection
 
+@php($mobile = \Illuminate\Support\Str::of(request()->userAgent())->contains(['mobile', 'Mobile']))
+
 @section('html')
-    @if(\Illuminate\Support\Str::of(request()->userAgent())->contains(['mobile', 'Mobile']))
+    @if($mobile)
 
         <div id="app">
 
             <el-container style="height: 100%;width: 100%;">
 
-                <el-header style="height: 60px;width: 100%;padding: 0;overflow-x: scroll">
+                <el-header style="height: 60px;width: 100%;padding: 0;overflow-x: scroll;background: #545c64;">
 
-                    <el-menu style="height: 100%;width: max-content" :default-active="menuActive" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" mode="horizontal">
+                    <el-menu style="height: 100%;width: max-content;" :default-active="menuActive" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" mode="horizontal">
 
-                        @include('layout.frame-nav')
+                        @include('user.layout.frame-nav')
 
                         <el-submenu index="user">
-                            <template slot="title">{{ user()->name }}</template>
-                            <a href="javascript:" onclick="confirm('Sure to Logout ?') && document.querySelector('#logout').submit()"><el-menu-item index="user-logout">Logout</el-menu-item></a>
+                            <template slot="title">{{ user() ? user()->name : '游客' }}</template>
+                            @if(user())
+                                <el-menu-item index="user-login" @click="$to('/profile')">设置</el-menu-item>
+                                <a href="javascript:" onclick="document.querySelector('#logout').submit()"><el-menu-item index="user-logout">登出</el-menu-item></a>
+                            @else
+                                <el-menu-item index="user-login" @click="$to('/login')">登录</el-menu-item>
+                                <el-menu-item index="user-register" @click="$to('/register')">注册</el-menu-item>
+                            @endif
                         </el-submenu>
+
 
                     </el-menu>
 
@@ -38,15 +47,15 @@
         <div id="app">
             <el-container style="height: 100%">
 
-                <el-aside style="width: 200px;height: 100%;overflow: hidden">
+                <el-aside style="width: 200px;height: 100%;">
 
                     <el-menu style="height: 100%;width: 100%" :default-active="menuActive" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
 
                         <el-container style="width: 100%;height: 60px;line-height: 60px;">
-                            <p style="color: white;font-size: 1.4em;width: 100%;text-align: center;user-select: none">{{ env('APP_NAME') }}</p>
+                            <p style="color: white;font-size: 1.4em;width: 100%;text-align: center;user-select: none">{{ config('info.name') }}</p>
                         </el-container>
 
-                        @include('layout.frame-nav')
+                        @include('user.layout.frame-nav')
 
                     </el-menu>
 
@@ -57,9 +66,15 @@
                     <el-header style="user-select: none;background-color: #545c64;color: #fff;line-height: 60px">
 
                         <el-dropdown style="float: right">
-                            <p style="cursor: pointer;color: #fff">{{ user()->name }} <i class="el-icon-arrow-down el-icon--right"></i></p>
+                            <p style="cursor: pointer;color: #fff">{{ user() ? user()->name : '游客' }} <i class="el-icon-arrow-down el-icon--right"></i></p>
                             <el-dropdown-menu slot="dropdown">
-                                <el-dropdown-item><a href="javascript:" onclick="confirm('Sure to Logout ?') && document.querySelector('#logout').submit()">Logout</a></el-dropdown-item>
+                                @if(user())
+                                    <el-dropdown-item><a href="/profile">设置</a></el-dropdown-item>
+                                    <el-dropdown-item><a href="javascript:" onclick="document.querySelector('#logout').submit()">登出</a></el-dropdown-item>
+                                @else
+                                    <el-dropdown-item><a href="/login">登录</a></el-dropdown-item>
+                                    <el-dropdown-item><a href="/register">注册</a></el-dropdown-item>
+                                @endif
                             </el-dropdown-menu>
                         </el-dropdown>
 
@@ -83,11 +98,11 @@
 
 
 @section('js')
-    @include('layout.js')
+    @include('user.layout.js')
     @yield('script')
 @endsection
 
 @section('css')
-    @include('layout.css')
+    @include('user.layout.css')
     @yield('style')
 @endsection

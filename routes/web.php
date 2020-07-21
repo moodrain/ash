@@ -10,8 +10,6 @@ Route::middleware(['auth'])->group(function() {
     Route::view('/', 'index');
     Route::post('logout', 'UserController@logout');
 
-    Route::get('post/list', 'PostController@list');
-    Route::any('post/edit', 'PostController@edit');
-    Route::post('post/destroy', 'PostController@destroy');
+
 
 });

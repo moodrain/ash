@@ -1,4 +1,4 @@
-@foreach(config('view.nav', []) as $item)
+@foreach(config('view.user.nav.' . ($mobile ? 'mobile' : 'pc'), []) as $item)
     @if(is_string($item[2]))
         <el-menu-item index="{{ $item[0] }}" @click="$to('/{{ $item[2] }}', {}, true)">{{ $item[1] }}</el-menu-item>
     @else

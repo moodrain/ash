@@ -2,13 +2,24 @@
 
 return [
 
-    // 0 => index, 1 => name, 2 => url/submenu
-    'nav' => [
-        ['dashboard', 'Dashboard', ''],
-        ['post', 'Post', [
-            ['post-list', 'Post List', 'post/list'],
-            ['post-edit', 'Post Edit', 'post/edit'],
-        ]],
+    'admin' => [
+        'nav' => [
+            ['dashboard', 'Dashboard', 'admin'],
+            ['post', 'Post', [
+                ['post-list', 'Post List', 'admin/post/list'],
+            ]],
+        ],
+    ],
+
+    'user' => [
+        'nav' => [
+            'pc' => [
+                ['home', 'Home', ''],
+            ],
+            'mobile' => [
+                ['home', 'Home', ''],
+            ],
+        ],
     ],
 
     /*

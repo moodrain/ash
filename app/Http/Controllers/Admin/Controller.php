@@ -48,8 +48,8 @@ class Controller extends BaseController
         return $builder->search($this->search)->sort();
     }
 
-    protected function vld() {
-        return $this->validate(request(), $this->rules);
+    protected function vld($rules = null) {
+        return $this->validate(request(), $rules ?? $this->rules);
     }
 
     protected function builder(): \Illuminate\Database\Eloquent\Builder

@@ -44,6 +44,9 @@ class Controller extends BaseController
         return $builder->search($this->search)->sort();
     }
 
+    protected function vld($rules) {
+        $this->validate(request(), $rules);
+    }
 
     protected function viewOk($view, $para = [])
     {

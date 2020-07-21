@@ -42,11 +42,13 @@ class Controller extends BaseController
         $this->sort = $sort;
     }
 
-    protected function mSearch($builder): Builder {
+    protected function mSearch($builder): Builder
+    {
         return $builder->search($this->search)->sort();
     }
 
-    protected function vld($rules) {
+    protected function vld($rules)
+    {
         $this->validate(request(), $rules);
     }
 

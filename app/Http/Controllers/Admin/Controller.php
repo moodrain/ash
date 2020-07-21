@@ -83,7 +83,7 @@ class Controller extends BaseController
         ];
         empty($para['d']) && $initPara['d'] = null;
         empty($para['l']) && $initPara['l'] = [];
-        return view('admin.' . $model . '.' . $view, array_merge($initPara, $para));
+        return view('admin.' . ($model ? $model . '.' : '') . $view, array_merge($initPara, $para));
     }
 
     protected function viewOk($view, $para = [])

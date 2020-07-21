@@ -1,4 +1,4 @@
-@extends('layout.frame')
+@extends('admin.layout.frame')
 
 @include('admin.piece.list-title')
 

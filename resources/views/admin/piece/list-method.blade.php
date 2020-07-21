@@ -10,7 +10,7 @@ doDelete(id) {
         }).then(() => {
             let ids = []
             this.selects.forEach(e => ids.push(e.id))
-            $submit('/{{ $m }}/destroy', {ids})
+            $submit('/admin/{{ $m }}/destroy', {ids})
         }).catch(() => {})
     } else {
         this.$confirm('Confirm to Delete a {{ $m }} ?', 'Confirm', {
@@ -18,7 +18,7 @@ doDelete(id) {
             cancelButtonText: 'No',
             type: 'warning',
         }).then(() => {
-            $submit('/{{ $m }}/destroy', {id})
+            $submit('/admin/{{ $m }}/destroy', {id})
         }).catch(() => {})
     }
 },

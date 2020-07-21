@@ -4,4 +4,6 @@
 <script>
     $bindVue(Vue)
     // new ClipboardJS('.clipboard-btn');
+    Vue.prototype.$back = () => history.go(-1)
+    Vue.prototype.$open = url => window.open(url, '_blank')
 </script>

@@ -44,15 +44,6 @@ if (! function_exists('ers'))
     }
 }
 
-if (! function_exists('errBack'))
-{
-    function errBack($msg)
-    {
-        return redirect()->back()->withInput()->withErrors(__($msg));
-    }
-}
-
-
 if (! function_exists('user'))
 {
     function user()

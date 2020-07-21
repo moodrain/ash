@@ -16,7 +16,7 @@
 
                     <el-menu style="height: 100%;width: max-content;" :default-active="menuActive" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" mode="horizontal">
 
-                        @include('user.layout.frame-nav')
+                        @include('layout.frame-nav')
 
                         <el-submenu index="user">
                             <template slot="title">{{ user() ? user()->name : '游客' }}</template>
@@ -55,7 +55,7 @@
                             <p style="color: white;font-size: 1.4em;width: 100%;text-align: center;user-select: none">{{ config('info.name') }}</p>
                         </el-container>
 
-                        @include('user.layout.frame-nav')
+                        @include('layout.frame-nav')
 
                     </el-menu>
 
@@ -98,11 +98,11 @@
 
 
 @section('js')
-    @include('user.layout.js')
+    @include('layout.js')
     @yield('script')
 @endsection
 
 @section('css')
-    @include('user.layout.css')
+    @include('layout.css')
     @yield('style')
 @endsection

@@ -21,7 +21,7 @@ class UserController extends Controller {
         ]);
         $user = User::query()->where('email', request('email'))->first();
         if (empty($user) || ! password_verify(request('password'), $user->password)) {
-            return errBack('auth.failed');
+            return $this->backErr('auth.failed');
         }
         Auth::loginUsingId($user->id);
         return redirect('/');
@@ -37,7 +37,7 @@ class UserController extends Controller {
     public function register()
     {
         if (request()->isMethod('get')) {
-            return view('user.login');
+            return view('user.register');
         }
         $this->validate(request(), [
             'email' => 'required|unique:users,email',

@@ -1,6 +1,6 @@
-@extends('layout.frame')
+@extends('admin.layout.frame')
 
-@section('title', 'Home')
+@section('title', 'Dashboard')
 
 @section('main')
     <el-row>
@@ -21,7 +21,7 @@ new Vue({
     el: '#app',
     data () {
         return {
-            menuActive: 'home'
+            menuActive: 'dashboard'
         }
     }
 })

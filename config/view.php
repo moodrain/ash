@@ -7,6 +7,7 @@ return [
             ['dashboard', 'Dashboard', 'admin'],
             ['post', 'Post', [
                 ['post-list', 'Post List', 'admin/post/list'],
+                ['post-edit', 'Post Edit', 'admin/post/edit'],
             ]],
         ],
     ],

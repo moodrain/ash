@@ -10,6 +10,6 @@ Route::middleware(['auth'])->group(function() {
     Route::view('/', 'index');
     Route::post('logout', 'UserController@logout');
 
-
-
 });
+
+require __DIR__ . '/admin.php';

@@ -67,7 +67,12 @@ class Controller extends BaseController
 
     protected function modelClass()
     {
-        return 'App\\Models\\' . ucfirst(Str::camel($this->model()));
+        $class = '';
+        $pieces = explode('_', $this->model());
+        foreach ($pieces as $piece) {
+            $class .= ('\\' . ucfirst($piece));
+        }
+        return 'App\\Models' . $class;
     }
 
     protected function table()

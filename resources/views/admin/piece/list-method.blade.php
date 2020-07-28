@@ -1,7 +1,6 @@
 selectChange (selects) { this.selects = selects },
 more() { if(this.doMore) { this.doMore() } },
 doDelete(id) {
-    console.log(this.selects)
     if(this.selects.length > 0) {
         this.$confirm('Confirm to Delete ' + this.selects.length + ' {{ $m }} ?', 'Confirm', {
             confirmButtonText: 'Ok',

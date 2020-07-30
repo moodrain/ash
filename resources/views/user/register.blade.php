@@ -7,7 +7,7 @@
             <el-col :span="6" :offset="9" :xs="{span:20,offset:2}">
                 <el-card>
                     <el-form>
-                        <x-input exp="model:form.email;pre:Email;ref:email" />
+                        <x-input exp="model:form.email;pre:Email" />
                         <x-input exp="model:form.name;pre:Name" />
                         <x-input exp="model:form.password;pre:Password;type:password" />
                         <x-input exp="model:form.rePassword;pre:RePassword;type:password" />
@@ -55,7 +55,6 @@
             },
             mounted() {
                 @include('piece.init')
-                this.$refs.email.focus()
             }
         })
         $enter(() => vue.register())

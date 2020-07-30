@@ -44,7 +44,7 @@
             },
             mounted() {
                 @include('piece.init')
-                this.$refs.email.focus()
+                this.form.email ? this.$refs.password.focus() : this.$refs.email.focus()
             }
         })
         $enter(() => vue.login())

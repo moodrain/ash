@@ -8,7 +8,7 @@
                 <el-card>
                     <el-form>
                         <x-input exp="model:form.email;pre:Email;ref:email" />
-                        <x-input exp="model:form.password;pre:Password;type:password" />
+                        <x-input exp="model:form.password;pre:Password;type:password;ref:password" />
                         <el-form-item>
                             <el-button @click="login">Login</el-button>
                             <el-divider direction="vertical"></el-divider>
@@ -46,7 +46,7 @@
             },
             mounted() {
                 @include('piece.init')
-                this.$refs.email.focus()
+                this.form.email ? this.$refs.password.focus() : this.$refs.email.focus()
             }
         })
         $enter(() => vue.login())

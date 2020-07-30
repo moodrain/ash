@@ -59,7 +59,7 @@ class Controller extends BaseController
 
     protected function directOk($uri)
     {
-        return redirect($uri)->with('msg', __('msg.success'));
+        return redirect($uri,307)->with('msg', __('msg.success'));
     }
 
     protected function backOk()

@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -50,6 +51,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($request->isXmlHttpRequest()) {
+            if ($exception instanceof ValidationException) {
+                return ers(head(head($exception->errors())));
+            }
+        }
         return parent::render($request, $exception);
     }
 }

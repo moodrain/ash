@@ -8,6 +8,7 @@ starter of Laravel & Vue & ElementUI & Rium
 * app/Http/Controller.php
 * app/Kernel.php
 > remove csrf token verify
+> remove require console.php
 * app/Models/Model.php
 * app/Models/Builder.php
 * app/Models/User.php
@@ -32,6 +33,8 @@ starter of Laravel & Vue & ElementUI & Rium
 
 ##### Removed Laravel Files
 
+* routes/channels.php
+* route/console.php
 * resources/js
 * resources/sass/app.scss
 * tests

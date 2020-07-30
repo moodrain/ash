@@ -96,9 +96,12 @@ class Controller extends BaseController
 
     protected function viewOk($view, $para = [])
     {
-        return $this->view($view, array_merge($para, [
-            'msg' => __('msg.success'),
-        ]));
+        return $this->view($view, array_merge($para, ['msg' => __('msg.success')]));
+    }
+
+    protected function directOk($uri)
+    {
+        return redirect('admin/' . $uri)->with('msg', __('msg.success'));
     }
 
     protected function backOk()

@@ -54,9 +54,12 @@ class Controller extends BaseController
 
     protected function viewOk($view, $para = [])
     {
-        return view($view, array_merge($para, [
-            'msg' => __('msg.success'),
-        ]));
+        return view($view, array_merge($para, ['msg' => __('msg.success')]));
+    }
+
+    protected function directOk($uri)
+    {
+        return redirect($uri)->with('msg', __('msg.success'));
     }
 
     protected function backOk()

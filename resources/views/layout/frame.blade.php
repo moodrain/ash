@@ -47,7 +47,7 @@
         <div id="app">
             <el-container style="height: 100%">
 
-                <el-aside style="width: 200px;height: 100%;">
+                <el-aside style="width: 200px;height: 100%;overflow: hidden">
 
                     <el-menu style="height: 100%;width: 100%" :default-active="menuActive" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
 

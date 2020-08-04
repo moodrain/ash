@@ -12,14 +12,14 @@ class RequestLog
     {
         $response = $next($request);
         $date = date('Y-m-d H:i:s');
-        $pathParam = $request->route()->originalParameters();
+        $pathParam = $request->route() ? $request->route()->originalParameters() : [];
         $param = $request->all() ? $request->all() : [];
         foreach ($param as $key => $val) {
             if (str_contains(strtolower($key), 'password') || str_contains(strtolower($key), 'token')) {
                 unset($param[$key]);
             }
         }
-        [$controller, $action] = explode('@', $request->route()->getActionName());
+        [$controller, $action] = $request->route() ? explode('@', $request->route()->getActionName())  : [null, null];
         $controller = str_replace('App\\Http\\Controllers\\', '', $controller);
         DB::table('request_logs')->insert([
             'ip' => $request->getClientIp(),

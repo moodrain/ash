@@ -106,7 +106,7 @@
                     this.$notify({message: rs.msg, type: rs.code === 0 ? 'success' : 'warning'})
                 },
                 rmdir(dir) {
-                    let path = this.pagePath ? (this.pagePath + dir.name) : dir.name
+                    let path = this.pagePath ? (this.pagePath + '/' + dir.name) : dir.name
                     this.$confirm('confirm to rmdir ?').then(() => {
                         this.$submit('/admin/explorer/rmdir', {path})
                     }).catch(() => {})

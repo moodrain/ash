@@ -19,8 +19,13 @@ class RequestLog
                 unset($param[$key]);
             }
         }
-        [$controller, $action] = $request->route() ? explode('@', $request->route()->getActionName())  : [null, null];
-        $controller = str_replace('App\\Http\\Controllers\\', '', $controller);
+
+        if ($request->route() && str_contains($request->route()->getActionName(), '@')) {
+            [$controller, $action] = explode('@', $request->route()->getActionName());
+        } else {
+            [$controller, $action] = [null, null];
+        }
+        $controller && $controller = str_replace('App\\Http\\Controllers\\', '', $controller);
         DB::table('request_logs')->insert([
             'ip' => $request->getClientIp(),
             'user_id' => uid(),

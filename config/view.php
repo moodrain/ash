@@ -9,6 +9,7 @@ return [
                 ['post-list', 'Post List', 'admin/post/list'],
                 ['post-edit', 'Post Edit', 'admin/post/edit'],
             ]],
+            ['explorer', 'Explorer', 'admin/explorer'],
         ],
     ],
 

@@ -17,12 +17,14 @@ class ExplorerController extends Controller
         $files = File::files($realPath);
         $directories = array_map(function($d) use ($path) {
             return [
+                'no' => explode('.', basename($d)[0]),
                 'name' => basename($d),
                 'path' => $path . ($path ? '/' : '') . basename($d),
             ];
         }, $directories);
         $files = array_map(function(SplFileInfo $f) use ($path) {
             return [
+                'no' => $f->getFilenameWithoutExtension(),
                 'file' => $path . '/' . $f->getBasename(),
                 'name' => $f->getBasename(),
                 'size' => (int) ($f->getSize() / 1024),
@@ -31,6 +33,12 @@ class ExplorerController extends Controller
                 'url' => '/admin/explorer/content?file=' . $path . ($path ? '/' : '') . $f->getBasename(),
             ];
         }, $files);
+        usort($files, function($a, $b) {
+            return (is_numeric($a['no']) && is_numeric($b['no'])) ? $a['no'] - $b['no'] : strcmp($a['name'], $b['name']);
+        });
+        usort($directories, function($a, $b) {
+            return (is_numeric($a['no']) && is_numeric($b['no'])) ? $a['no'] - $b['no'] : strcmp($a['name'], $b['name']);
+        });
         return $this->view('explorer.index', compact('directories', 'files'));
     }
 

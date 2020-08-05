@@ -12,7 +12,7 @@
 
             <el-container style="height: 100%;width: 100%;">
 
-                <el-header style="height: 60px;width: 100%;padding: 0;overflow-x: scroll;background: #545c64;">
+                <el-header style="height: 60px;width: 100%;padding: 0;overflow: hidden;background: #545c64;">
 
                     <el-menu style="height: 100%;width: max-content;" :default-active="menuActive" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" mode="horizontal">
 

@@ -5,9 +5,17 @@ return [
     'admin' => [
         'nav' => [
             ['dashboard', 'Dashboard', 'admin'],
-            ['post', 'Post', [
-                ['post-list', 'Post List', 'admin/post/list'],
-                ['post-edit', 'Post Edit', 'admin/post/edit'],
+            ['subject', 'Subject', [
+                ['subject-list', 'Subject List', 'admin/subject/list'],
+                ['subject-edit', 'Subject Edit', 'admin/subject/edit'],
+            ]],
+            ['comment', 'Comment', [
+                ['comment-list', 'Comment List', 'admin/comment/list'],
+                ['comment-edit', 'Comment Edit', 'admin/comment/edit'],
+            ]],
+            ['subject-category', 'Subject Category', [
+                ['subject-category-list', 'Subject Category List', 'admin/subject-category/list'],
+                ['subject-category-edit', 'Subject Category Edit', 'admin/subject-category/edit'],
             ]],
             ['explorer', 'Explorer', 'admin/explorer'],
         ],
@@ -17,9 +25,13 @@ return [
         'nav' => [
             'pc' => [
                 ['home', 'Home', ''],
+                ['subject', 'Subject', 'subject'],
+                ['subject-edit', 'Subject Edit', 'subject/edit'],
             ],
             'mobile' => [
                 ['home', 'Home', ''],
+                ['subject', 'Subject', 'subject'],
+                ['subject-edit', 'Subject Edit', 'subject/edit'],
             ],
         ],
     ],

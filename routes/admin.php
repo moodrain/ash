@@ -8,9 +8,17 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->namespace('Admin')->group
 
     Route::view('/', 'admin/index');
 
-    Route::get('post/list', 'PostController@list');
-    Route::any('post/edit', 'PostController@edit');
-    Route::post('post/destroy', 'PostController@destroy');
+    Route::get('subject/list', 'SubjectController@list');
+    Route::any('subject/edit', 'SubjectController@edit');
+    Route::post('subject/destroy', 'SubjectController@destroy');
+
+    Route::get('comment/list', 'CommentControoler@list');
+    Route::any('comment/edit', 'CommentControoler@edit');
+    Route::post('comment/destroy', 'CommentControoler@destroy');
+
+    Route::get('subject-category/list', 'SubjectCategoryController@list');
+    Route::any('subject-category/edit', 'SubjectCategoryController@edit');
+    Route::post('subject-category/destroy', 'SubjectCategoryController@destroy');
 
     Route::get('explorer', 'ExplorerController@index');
     Route::get('explorer/content', 'ExplorerController@content');

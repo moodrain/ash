@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Subject;
+use App\Models\Subject\Category;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,27 +14,48 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $users = collect();
+        $this->user();
+        $this->subjectCategory();
+        $this->subject();
+        $this->comment();
+    }
+
+    private function user()
+    {
         for ($i = 1; $i <= 3; $i++) {
-            $users->push([
-                'id' => $i,
+            User::query()->create([
                 'email' => "user$i@mail.com",
-                'name' => 'user' . $i,
+                'name' => "user$i",
                 'password' => password_hash('123', PASSWORD_DEFAULT),
             ]);
         }
-        DB::table('users')->insert($users->all());
-        $posts = collect();
-        for ($i = 1; $i <= 100; $i++) {
-            $posts->push([
-                'id' => $i,
-                'name' => 'post-' . $i,
-                'abstract' => "post-$i-abstract",
-                'user_id' => $users->random()['id'],
-                'created_at' => mDate(time() - mt_rand(1, 999) * 60),
+    }
+
+    private function subjectCategory()
+    {
+        for ($i = 1; $i <= 3; $i++) {
+            Category::query()->create([
+                'name' => "category-$i",
             ]);
         }
-        DB::table('posts')->insert($posts->all());
+    }
+
+    private function subject()
+    {
+        for ($i = 1; $i <= 3; $i++) {
+            Subject::query()->create([
+                'title' => "subject-$i",
+                'user_id' => $i,
+                'category_id' => $i,
+                'content' => "### Title \n\n Content $i",
+                'images' => json_encode(array_fill(0, 3, 'https://s1.moodrain.cn/test/img/img.jpg')),
+            ]);
+        }
+    }
+
+    private function comment()
+    {
+
     }
 
 }

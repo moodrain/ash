@@ -4,12 +4,11 @@
 
 @section('main')
     <el-row>
-        <el-col :span="8" :xs="{span:22,offset:1}">
+        <el-col :span="8" :xs="24">
             <el-card>
                 <el-form>
                     <x-admin.edit-id :d="$d" />
                     <x-input exp="model:form.name;label:Name" />
-                    <x-input exp="model:form.abstract;label:Abstract" />
                     <x-admin.edit-submit :d="$d" />
                 </el-form>
             </el-card>
@@ -19,7 +18,7 @@
 
 @section('script')
 <script>
-    let vue = new Vue({
+    new Vue({
         el: '#app',
         data () {
             return {
@@ -27,7 +26,6 @@
                 form: {
                     id: {{ bv('id', null) }},
                     name: '{{ bv('name') }}',
-                    abstract: '{{ bv('abstract') }}',
                 },
             }
         },
@@ -38,6 +36,5 @@
             @include('admin.piece.init')
         }
     })
-    $enter(() => $submit(vue.form))
 </script>
 @endsection

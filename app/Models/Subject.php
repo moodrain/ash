@@ -20,6 +20,9 @@ class Subject extends Model
 
     protected $appends = ['createdAtReadable', 'updatedAtReadable', 'contentShort'];
     protected $with = ['user', 'category'];
+    protected $casts = [
+        'images' => 'json',
+    ];
 
     public function user()
     {

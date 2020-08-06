@@ -21,6 +21,9 @@ class Comment extends Model
 
     protected $appends = ['createdAtReadable', 'updatedAtReadable', 'contentShort'];
     protected $with = ['user', 'from'];
+    protected $casts = [
+        'images' => 'json',
+    ];
 
     public function user()
     {

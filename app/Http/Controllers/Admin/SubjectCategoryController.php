@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Validation\Rule;
 
-class PostController extends Controller
+class SubjectCategoryController extends Controller
 {
-    protected $model = 'post';
+    protected $model = 'subject_category';
 
     public function list()
     {
-        $builder = $this->mSearch($this->builder())->with('user');
+        $builder = $this->mSearch($this->builder());
         return $this->view('list', ['l' => $builder->paginate()]);
     }
 
@@ -19,12 +19,12 @@ class PostController extends Controller
         if (request()->isMethod('post')) {
             $isUpdate = request()->filled('id');
             $this->rules = [
-                'abstract' => '',
+                'title' => 'name',
             ];
+            $isUpdate && $this->rules['id'] = 'exists:' . $this->table();
             $this->rules['name'] = $isUpdate
                 ? ['required', Rule::unique($this->table())->ignore(request('id'))]
                 : 'required|unique:' . $this->table();
-            $isUpdate && $this->rules['id'] = 'exists:' . $this->table();
             $this->vld();
             return $isUpdate ? $this->update() : $this->store();
         }
@@ -36,7 +36,6 @@ class PostController extends Controller
     private function store()
     {
         $item = $this->builder()->newModelInstance(request()->only(array_keys($this->rules)));
-        $item->userId = uid();
         $item->save();
         return $this->viewOk('edit');
     }

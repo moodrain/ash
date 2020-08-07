@@ -23,7 +23,7 @@ class CommentController extends Controller
                 'subjectId' => 'required|exists:subjects,id',
                 'commentId' => 'exists:comments,id',
                 'content' => 'required',
-                'images' => 'array'
+                'images' => 'json'
             ];
             $isUpdate && $this->rules['id'] = 'exists:' . $this->table();
             $this->vld();
@@ -38,6 +38,7 @@ class CommentController extends Controller
     {
         $item = $this->builder()->newModelInstance(request()->only(array_keys($this->rules)));
         $item->userId = uid();
+        $item->images = json_decode($item->images);
         $item->save();
         return $this->viewOk('edit');
     }
@@ -46,6 +47,7 @@ class CommentController extends Controller
     {
         $item = $this->builder()->find(request('id'));
         $item->fill(request()->only(array_keys($this->rules)));
+        $item->images = json_decode($item->images);
         $item->save();
         return $this->viewOk('edit', ['d' => $item]);
     }

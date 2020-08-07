@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Comment;
 use App\Models\Subject;
 use App\Models\Subject\Category;
 use App\Models\User;
@@ -45,9 +46,9 @@ class DatabaseSeeder extends Seeder
         for ($i = 1; $i <= 3; $i++) {
             Subject::query()->create([
                 'title' => "subject-$i",
-                'user_id' => $i,
-                'category_id' => $i,
-                'content' => "### Title \n\n Content $i",
+                'userId' => $i,
+                'categoryId' => $i,
+                'content' => "### Title \n\n Subject $i",
                 'images' => array_fill(0, 3, 'https://s1.moodrain.cn/test/img/img.jpg'),
             ]);
         }
@@ -55,7 +56,30 @@ class DatabaseSeeder extends Seeder
 
     private function comment()
     {
-
+        Comment::query()->create([
+            'fromUserId' => 2,
+            'subjectId' => 1,
+            'commentId' => null,
+            'userId' => 1,
+            'content' => "#### Title \n\n Comment",
+            'images' => array_fill(0, 3, 'https://s1.moodrain.cn/test/img/img.jpg'),
+        ]);
+        Comment::query()->create([
+            'fromUserId' => 3,
+            'subjectId' => 1,
+            'commentId' => 1,
+            'userId' => 2,
+            'content' => "#### Title \n\n SubComment",
+            'images' => array_fill(0, 3, 'https://s1.moodrain.cn/test/img/img.jpg'),
+        ]);
+        Comment::query()->create([
+            'fromUserId' => 1,
+            'subjectId' => 1,
+            'commentId' => 2,
+            'userId' => 3,
+            'content' => "#### Title \n\n SubComment",
+            'images' => array_fill(0, 3, 'https://s1.moodrain.cn/test/img/img.jpg'),
+        ]);
     }
 
 }

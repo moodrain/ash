@@ -6,7 +6,7 @@ trait ImageJson
 {
     public function getImageJsonAttribute()
     {
-        return $this->attributes['images'];
+        return $this->attributes['images'] ?? '';
     }
 
 }

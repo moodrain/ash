@@ -12,9 +12,9 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->namespace('Admin')->group
     Route::any('subject/edit', 'SubjectController@edit');
     Route::post('subject/destroy', 'SubjectController@destroy');
 
-    Route::get('comment/list', 'CommentControoler@list');
-    Route::any('comment/edit', 'CommentControoler@edit');
-    Route::post('comment/destroy', 'CommentControoler@destroy');
+    Route::get('comment/list', 'CommentController@list');
+    Route::any('comment/edit', 'CommentController@edit');
+    Route::post('comment/destroy', 'CommentController@destroy');
 
     Route::get('subject-category/list', 'SubjectCategoryController@list');
     Route::any('subject-category/edit', 'SubjectCategoryController@edit');

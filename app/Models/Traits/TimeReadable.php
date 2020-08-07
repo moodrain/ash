@@ -8,11 +8,11 @@ trait TimeReadable
 {
     public function getCreatedAtReadableAttribute()
     {
-        return Carbon::create($this->attributes['created_at'])->diffForHumans();
+        return isset($this->attributes['created_at']) ? Carbon::create($this->attributes['created_at'])->diffForHumans() : '';
     }
 
     public function getUpdatedAtReadableAttribute()
     {
-        return Carbon::create($this->attributes['updated_at'])->diffForHumans();
+        return isset($this->attributes['updated_at']) ? Carbon::create($this->attributes['updated_at'])->diffForHumans() : '';
     }
 }

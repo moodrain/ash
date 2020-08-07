@@ -162,3 +162,11 @@ if (! function_exists('endWith'))
         return mb_substr($str, mb_strlen($str) - 1, 1) == $end ? $str : ($str . $end);
     }
 }
+
+if (! function_exists('mobile'))
+{
+    function mobile()
+    {
+        return \Illuminate\Support\Str::of(request()->userAgent())->contains(['mobile', 'Mobile']);
+    }
+}

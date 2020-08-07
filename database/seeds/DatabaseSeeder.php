@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
                 'user_id' => $i,
                 'category_id' => $i,
                 'content' => "### Title \n\n Content $i",
-                'images' => json_encode(array_fill(0, 3, 'https://s1.moodrain.cn/test/img/img.jpg')),
+                'images' => array_fill(0, 3, 'https://s1.moodrain.cn/test/img/img.jpg'),
             ]);
         }
     }

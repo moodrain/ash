@@ -3,10 +3,8 @@
 @section('title')
 @endsection
 
-@php($mobile = \Illuminate\Support\Str::of(request()->userAgent())->contains(['mobile', 'Mobile']))
-
 @section('html')
-    @if($mobile)
+    @if(mobile())
 
         <div id="app">
 

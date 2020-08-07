@@ -24,9 +24,7 @@
         <el-table-column prop="contentShort" label="Content"></el-table-column>
         <el-table-column label="Image">
             <template slot-scope="scope">
-                <div>
-                    <el-image v-for="(item, index) in scope.row.images" :key="index" :src="item"></el-image>
-                </div>
+                <el-image @click="$open(src)" style="max-width:20%;margin: 1%;cursor: pointer" fit="contain" v-for="(src, index) in scope.row.images" :key="index" :src="src"></el-image>
             </template>
         </el-table-column>
         <el-table-column prop="createdAt" label="CreatedAt" width="160"></el-table-column>

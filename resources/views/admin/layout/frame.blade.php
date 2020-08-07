@@ -4,7 +4,7 @@
 @endsection
 
 @section('html')
-    @if(\Illuminate\Support\Str::of(request()->userAgent())->contains(['mobile', 'Mobile']))
+    @if(mobile())
 
         <div id="app">
 

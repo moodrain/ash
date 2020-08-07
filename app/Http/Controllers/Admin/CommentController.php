@@ -18,10 +18,10 @@ class CommentController extends Controller
             $isUpdate = request()->filled('id');
             $this->rules = [
                 'title' => 'required',
-                'user_id' => 'required|exists:users,id',
-                'from_user_id' => 'required|exists:users,id',
-                'subject_id' => 'required|exists:subjects,id',
-                'comment_id' => 'exists:comments,id',
+                'userId' => 'required|exists:users,id',
+                'fromUserId' => 'required|exists:users,id',
+                'subjectId' => 'required|exists:subjects,id',
+                'commentId' => 'exists:comments,id',
                 'content' => 'required',
                 'images' => 'array'
             ];

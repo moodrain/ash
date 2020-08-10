@@ -1,4 +1,4 @@
-@foreach(config('view.user.nav.' . ($mobile ? 'mobile' : 'pc'), []) as $item)
+@foreach(config('view.user.nav.' . (mobile() ? 'mobile' : 'pc'), []) as $item)
 
     @if(is_string($item[2]))
         @if(user() || ! in_array($item[0], config('view.nav.auth', [])))

@@ -5,6 +5,7 @@
 
 @section('html')
     @if(mobile())
+
         <div id="app">
 
             <el-container style="height: 100%;width: 100%;">

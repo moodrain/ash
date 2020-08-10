@@ -22,6 +22,7 @@ class CommentController extends Controller
                 'fromUserId' => 'required|exists:users,id',
                 'subjectId' => 'required|exists:subjects,id',
                 'commentId' => 'exists:comments,id',
+                'orderId' => 'required',
                 'content' => 'required',
                 'images' => 'json'
             ];

@@ -59,10 +59,10 @@ class DatabaseSeeder extends Seeder
         Comment::query()->create([
             'fromUserId' => 2,
             'subjectId' => 1,
-            'commentId' => null,
             'userId' => 1,
             'content' => "#### Title \n\n Comment",
             'images' => array_fill(0, 3, 'https://s1.moodrain.cn/test/img/img.jpg'),
+            'orderId' => 1,
         ]);
         Comment::query()->create([
             'fromUserId' => 3,
@@ -71,6 +71,7 @@ class DatabaseSeeder extends Seeder
             'userId' => 2,
             'content' => "#### Title \n\n SubComment",
             'images' => array_fill(0, 3, 'https://s1.moodrain.cn/test/img/img.jpg'),
+            'orderId' => 1,
         ]);
         Comment::query()->create([
             'fromUserId' => 1,
@@ -79,6 +80,15 @@ class DatabaseSeeder extends Seeder
             'userId' => 3,
             'content' => "#### Title \n\n SubComment",
             'images' => array_fill(0, 3, 'https://s1.moodrain.cn/test/img/img.jpg'),
+            'orderId' => 1,
+        ]);
+        Comment::query()->create([
+            'fromUserId' => 1,
+            'subjectId' => 1,
+            'userId' => 1,
+            'content' => "#### Title \n\n Comment",
+            'images' => array_fill(0, 3, 'https://s1.moodrain.cn/test/img/img.jpg'),
+            'orderId' => 4,
         ]);
     }
 

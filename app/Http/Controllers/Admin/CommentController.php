@@ -8,7 +8,7 @@ class CommentController extends Controller
 
     public function list()
     {
-        $builder = $this->mSearch($this->builder())->with('user', 'subject', 'from');
+        $builder = $this->mSearch($this->builder())->with('subject', 'from');
         return $this->view('list', ['l' => $builder->paginate()]);
     }
 

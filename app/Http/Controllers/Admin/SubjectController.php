@@ -10,7 +10,7 @@ class SubjectController extends Controller
 
     public function list()
     {
-        $builder = $this->mSearch($this->builder())->with('user');
+        $builder = $this->mSearch($this->builder());
         return $this->view('list', ['l' => $builder->paginate()]);
     }
 

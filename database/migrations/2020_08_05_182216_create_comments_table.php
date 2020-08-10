@@ -19,6 +19,7 @@ class CreateCommentsTable extends Migration
             $table->integer('subject_id');
             $table->integer('comment_id')->nullable();
             $table->integer('user_id');
+            $table->integer('order_id');
             $table->text('content');
             $table->json('images')->nullable();
             $table->timestamps();

@@ -8,9 +8,9 @@
                 <el-form>
                     <x-admin.edit-id :d="$d" />
                     <x-select exp="model:form.subjectId;label:Subject;key:id;selectLabel:title;value:id;data:subjects" />
-                    <x-select exp="model:form.commentId;data:comments;label:Comment" />
-                    <x-select exp="model:form.userId;label:To;key:id;selectLabel:name;value:id;data:users" />
                     <x-select exp="model:form.fromUserId;label:From;key:id;selectLabel:name;value:id;data:users" />
+                    <x-select exp="model:form.userId;label:To;key:id;selectLabel:name;value:id;data:users" />
+                    <x-input exp="model:form.commentId;pre:Comment Id" />
                     <x-input exp="model:form.images;label:Images;type:textarea" />
                     <x-input exp="model:form.content;label:Content;type:textarea" />
                     <x-admin.edit-submit :d="$d" />
@@ -44,9 +44,7 @@
                     content: atob('{{ old('content') ? base64_encode(old('content')) : bv('contentBase64') }}')
                 },
                 users: @json(\App\Models\User::query()->get(['id', 'name'])),
-                categories: @json(\App\Models\Subject\Category::query()->get(['id', 'name'])),
                 subjects: @json(\App\Models\Subject::query()->get(['id', 'title'])),
-                comments: @json(\App\Models\Comment::query()->pluck('id')),
             }
         },
         methods: {

@@ -43,7 +43,6 @@
                 @include('admin.piece.list-data')
                 users: @json(\App\Models\User::query()->get(['id', 'name'])),
                 subjects: @json(\App\Models\Subject::query()->get(['id', 'title'])),
-                categories: @json(\App\Models\Subject\Category::query()->get(['id', 'name'])),
             }
         },
         methods: {

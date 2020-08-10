@@ -6,9 +6,8 @@
 <el-card>
     <el-form inline>
         <x-input exp="model:search.id;pre:ID" />
-        <x-input exp="model:search.title;pre:Title" />
-        <x-input exp="model:search.title;pre:Title" />
-        <x-select exp="model:search.userId;label:User;key:id;selectLabel:name;value:id;data:users" />
+        <x-input exp="model:search.commentId;pre:Comment ID" />
+        <x-select exp="model:search.fromUserId;label:User;key:id;selectLabel:name;value:id;data:users" />
         <x-select exp="model:search.subjectId;label:Subject;key:id;selectLabel:title;value:id;data:subjects" />
         <x-sort />
         <x-admin.list-head-btn :m="$m" />
@@ -20,7 +19,7 @@
         <el-table-column type="selection" width="55"></el-table-column>
         <el-table-column prop="id" label="ID" width="60"></el-table-column>
         <el-table-column prop="subject.title" label="Subject"></el-table-column>
-        <el-table-column prop="user.name" label="User"></el-table-column>
+        <el-table-column prop="from.name" label="User"></el-table-column>
         <el-table-column prop="contentShort" label="Content"></el-table-column>
         <el-table-column label="Image">
             <template slot-scope="scope">
@@ -43,6 +42,7 @@
             return {
                 @include('admin.piece.list-data')
                 users: @json(\App\Models\User::query()->get(['id', 'name'])),
+                subjects: @json(\App\Models\Subject::query()->get(['id', 'title'])),
                 categories: @json(\App\Models\Subject\Category::query()->get(['id', 'name'])),
             }
         },

@@ -7,8 +7,9 @@
     <el-form inline>
         <x-input exp="model:search.id;pre:ID" />
         <x-input exp="model:search.title;pre:Title" />
+        <x-input exp="model:search.title;pre:Title" />
         <x-select exp="model:search.userId;label:User;key:id;selectLabel:name;value:id;data:users" />
-        <x-select exp="model:search.categoryId;label:Category;key:id;selectLabel:name;value:id;data:categories" />
+        <x-select exp="model:search.subjectId;label:Subject;key:id;selectLabel:title;value:id;data:subjects" />
         <x-sort />
         <x-admin.list-head-btn :m="$m" />
     </el-form>
@@ -18,8 +19,7 @@
     <el-table :data="list" height="560" border  @selection-change="selectChange">
         <el-table-column type="selection" width="55"></el-table-column>
         <el-table-column prop="id" label="ID" width="60"></el-table-column>
-        <el-table-column prop="title" label="Title"></el-table-column>
-        <el-table-column prop="category.name" label="Category"></el-table-column>
+        <el-table-column prop="subject.title" label="Subject"></el-table-column>
         <el-table-column prop="user.name" label="User"></el-table-column>
         <el-table-column prop="contentShort" label="Content"></el-table-column>
         <el-table-column label="Image">
@@ -27,6 +27,7 @@
                 <el-image @click="$open(src)" style="max-width:20%;margin: 1%;cursor: pointer" fit="contain" v-for="(src, index) in scope.row.images" :key="index" :src="src"></el-image>
             </template>
         </el-table-column>
+        <el-table-column prop="commentId" label="Comment ID"></el-table-column>
         <el-table-column prop="createdAt" label="CreatedAt" width="160"></el-table-column>
         <x-admin.list-body-col :m="$m" />
     </el-table>

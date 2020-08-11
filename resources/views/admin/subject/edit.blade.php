@@ -10,8 +10,26 @@
                     <x-input exp="model:form.title;pre:Title" />
                     <x-select exp="model:form.categoryId;label:Category;key:id;selectLabel:name;value:id;data:categories" />
                     <x-select exp="model:form.userId;label:User;key:id;selectLabel:name;value:id;data:users" />
-                    <x-input exp="model:form.images;label:Images;type:textarea" />
                     <x-input exp="model:form.content;label:Content;type:textarea" />
+                    <el-card>
+                        <div slot="header">
+                            <div style="display: inline-block;width: 60%">Images</div>
+                            <div style="display: inline-block;width: 38%;text-align: right">
+                                <el-upload multiple action="/subject/upload" :on-success="uploadOk" :show-file-list="false" :with-credentials="true">
+                                    <el-button slot="trigger" icon="el-icon-upload2" size="small"></el-button>
+                                </el-upload>
+                            </div>
+                        </div>
+                        <div class="preview">
+                            <img :src="src" v-for="(src, index) in form.images" :key="index" @click.right.prevent="removeImage(index)" style="max-width: 100px;max-height: 100px;object-fit: contain;cursor: pointer;margin: 2px;" />
+                        </div>
+                        @if(mobile())
+                            <p>Long Press to Remove</p>
+                        @else
+                            <p>Right Click to Remove</p>
+                        @endif
+                    </el-card>
+                    <br />
                     <x-admin.edit-submit :d="$d" />
                 </el-form>
             </el-card>
@@ -23,6 +41,7 @@
             </el-card>
         </el-col>
     </el-row>
+    <x-image-preview />
 @endsection
 
 @section('script')
@@ -37,7 +56,7 @@
                     title: '{{ bv('title') }}',
                     userId: {{ bv('userId', null) }},
                     categoryId: {{ bv('categoryId') }},
-                    images: '{!! old('images') ? old('images') : bv('imageJson') !!}',
+                    images: @json(bv('images')),
                     content: atob('{{ old('content') ? base64_encode(old('content')) : bv('contentBase64') }}')
                 },
                 users: @json(\App\Models\User::query()->get(['id', 'name'])),
@@ -46,6 +65,12 @@
         },
         methods: {
             @include('admin.piece.edit-method')
+            uploadOk(rs) {
+                this.form.images.push(rs.data)
+            },
+            removeImage(index) {
+                this.form.images.splice(index, 1)
+            }
         },
         mounted() {
             @include('admin.piece.init')

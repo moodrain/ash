@@ -4,12 +4,11 @@ namespace App\Models;
 
 use App\Models\Subject\Category;
 use App\Models\Traits\Content;
-use App\Models\Traits\ImageJson;
 use App\Models\Traits\TimeReadable;
 
 class Subject extends Model
 {
-    use TimeReadable, Content, ImageJson;
+    use TimeReadable, Content;
 
     public static $searchRule = [
         'id' => '=',
@@ -20,7 +19,7 @@ class Subject extends Model
 
     public static $sortRule = ['id', 'title', 'userId', 'categoryId', 'createdAt', 'updatedAt'];
 
-    protected $appends = ['createdAtReadable', 'updatedAtReadable', 'contentShort', 'contentBase64', 'imageJson'];
+    protected $appends = ['createdAtReadable', 'updatedAtReadable', 'contentShort', 'contentBase64'];
     protected $with = ['user', 'category'];
     protected $casts = [
         'images' => 'json',

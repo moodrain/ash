@@ -60,6 +60,7 @@ class SubjectController extends Controller
     public function update()
     {
         $subject = Subject::query()->find(request('id'));
+        abort_if($subject->userId != uid(), 403);
         $subject->fill(request()->only(array_keys($this->rules)));
         $subject->save();
         return $this->viewOk('subject.edit', ['d' => $subject]);

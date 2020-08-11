@@ -23,7 +23,7 @@ class SubjectController extends Controller
                 'userId' => 'required|exists:users,id',
                 'categoryId' => 'required|exists:subject_categories,id',
                 'content' => 'required',
-                'images' => 'json'
+                'images' => 'array'
             ];
             $isUpdate && $this->rules['id'] = 'exists:' . $this->table();
             $this->vld();
@@ -38,7 +38,6 @@ class SubjectController extends Controller
     {
         $item = $this->builder()->newModelInstance(request()->only(array_keys($this->rules)));
         $item->userId = uid();
-        $item->images = json_decode($item->images);
         $item->save();
         return $this->viewOk('edit');
     }
@@ -47,7 +46,6 @@ class SubjectController extends Controller
     {
         $item = $this->builder()->find(request('id'));
         $item->fill(request()->only(array_keys($this->rules)));
-        $item->images = json_decode($item->images);
         $item->save();
         return $this->viewOk('edit', ['d' => $item]);
     }

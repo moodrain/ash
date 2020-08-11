@@ -16,7 +16,7 @@
 <br />
 <el-card>
     <el-table :data="list" height="560" border  @selection-change="selectChange">
-        <el-table-column type="selection" width="55"></el-table-column>
+        <el-table-colcumn type="selection" width="55"></el-table-colcumn>
         <el-table-column prop="id" label="ID" width="60"></el-table-column>
         <el-table-column prop="title" label="Title"></el-table-column>
         <el-table-column prop="category.name" label="Category"></el-table-column>

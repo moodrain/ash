@@ -22,7 +22,7 @@
                 <el-divider direction="vertical"></el-divider>
                 <el-tag style="margin: 0">@{{ item.category.name }}</el-tag>
                 <el-divider v-if="item.userId == {{ uid() ?? 'null' }}" direction="vertical"></el-divider>
-                <a v-if="item.userId == {{ uid() ?? 'null' }}" :href="'/subject/edit/' + item.id" style="color: blue">编辑</a>
+                <a v-if="item.userId == {{ uid() ?? 'null' }}" :href="'/subject/edit?id=' + item.id">编辑</a>
             </p>
             <p class="preview">
                 <img style="max-width: 100px;max-height: 100px;object-fit: contain;cursor: pointer;margin: 1px;" :src="src" v-for="(src, index) in item.images" :key="index" />

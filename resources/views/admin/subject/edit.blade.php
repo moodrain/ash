@@ -7,7 +7,7 @@
             <el-card>
                 <el-form>
                     <x-admin.edit-id :d="$d" />
-                    <x-input exp="model:form.title;label:Title" />
+                    <x-input exp="model:form.title;pre:Title" />
                     <x-select exp="model:form.categoryId;label:Category;key:id;selectLabel:name;value:id;data:categories" />
                     <x-select exp="model:form.userId;label:User;key:id;selectLabel:name;value:id;data:users" />
                     <x-input exp="model:form.images;label:Images;type:textarea" />

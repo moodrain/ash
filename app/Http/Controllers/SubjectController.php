@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Subject;
+use function GuzzleHttp\Psr7\mimetype_from_filename;
 
 class SubjectController extends Controller
 {
@@ -34,8 +35,55 @@ class SubjectController extends Controller
     public function edit()
     {
         if (request()->isMethod('get')) {
-            return view();
+            return view('subject.edit', ['d' => request('id') ? Subject::query()->findOrFail(request('id')) : null]);
+        }
+        $this->rules = [
+            'title' => 'required',
+            'categoryId' => 'required|exists:subject_categories,id',
+            'content' => 'required',
+            'images' => 'array'
+        ];
+        $isUpdate = request()->filled('id');
+        $isUpdate && $this->rules['id'] = 'exists:subjects';
+        $this->vld($this->rules);
+        return $isUpdate ? $this->update() : $this->store();
+    }
+
+    public function store()
+    {
+        $subject = new Subject(request()->only(array_keys($this->rules)));
+        $subject->userId = uid();
+        $subject->save();
+        return $this->directOk('/subject/' . $subject->id);
+    }
+
+    public function update()
+    {
+        $subject = Subject::query()->find(request('id'));
+        $subject->fill(request()->only(array_keys($this->rules)));
+        $subject->save();
+        return $this->viewOk('subject.edit', ['d' => $subject]);
+    }
+
+    public function upload($file = null)
+    {
+        if (request()->isMethod('get')) {
+            return response(file_get_contents(storage_path('app/upload/subject/' . $file)))->header('Content-Type', mimetype_from_filename($file));
+        }
+        $this->vld(['file' => 'file']);
+        $file = request()->file('file');
+        $tmp = $file->getRealPath();
+        $ext = $file->getClientOriginalExtension();
+        $name = md5_file($tmp);
+        $path = storage_path('app/upload/subject/' . $name . '.' . $ext);
+        try {
+            rename($tmp, $path);
+            return rs('/subject/upload/' . $name . '.' . $ext);
+        } catch (\Throwable $e) {
+            return ers($e->getMessage());
         }
     }
+
+    private $rules;
 
 }

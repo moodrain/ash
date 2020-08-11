@@ -10,7 +10,8 @@
                     <x-select exp="model:form.subjectId;label:Subject;key:id;selectLabel:title;value:id;data:subjects" />
                     <x-select exp="model:form.fromUserId;label:From;key:id;selectLabel:name;value:id;data:users" />
                     <x-select exp="model:form.userId;label:To;key:id;selectLabel:name;value:id;data:users" />
-                    <x-input exp="model:form.commentId;pre:Comment Id" />
+                    <x-input exp="model:form.commentId;pre:Comment ID;type:number" />
+                    <x-input exp="model:form.orderId;pre:Order ID;type:number" />
                     <x-input exp="model:form.images;label:Images;type:textarea" />
                     <x-input exp="model:form.content;label:Content;type:textarea" />
                     <x-admin.edit-submit :d="$d" />
@@ -40,6 +41,7 @@
                     commentId: {{ bv('commentId', null) }},
                     userId: {{ bv('userId', null) }},
                     fromUserId: {{ bv('fromUserId', null) }},
+                    orderId: {{ bv('orderId', null) }},
                     images: '{!! old('images') ? old('images') : bv('imageJson') !!}',
                     content: atob('{{ old('content') ? base64_encode(old('content')) : bv('contentBase64') }}')
                 },

@@ -12,3 +12,10 @@ if(this.errMsg) {
         duration: 0,
     })
 }
+let images = document.querySelectorAll('.preview img')
+images.forEach(e => {
+    e.addEventListener('click', e => {
+        this.previewImage(e.target.src, e.target.naturalWidth)
+        e.stopPropagation()
+    })
+})

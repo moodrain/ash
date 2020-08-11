@@ -29,7 +29,13 @@ class SubjectController extends Controller
 
     public function show(Subject $subject)
     {
-        Comment::query()->orderByDesc('');
+        $size = 20;
+        $builder = function() use ($subject) {
+            return Comment::query()->where('subject_id', $subject->id)->orderBy('order_id')->orderBy('id');
+        };
+        $comments = $builder()->skip($size * request('page') - $size)->take($size)->get();
+        $total = $builder()->count();
+        return view('subject.item', compact('subject', 'comments', 'total'));
     }
 
     public function edit()

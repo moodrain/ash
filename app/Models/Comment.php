@@ -21,7 +21,7 @@ class Comment extends Model
     public static $sortRule = ['id', 'content', 'userId', 'fromUserId', 'subjectId', 'commentId', 'createdAt', 'updatedAt'];
 
     protected $appends = ['createdAtReadable', 'updatedAtReadable', 'contentShort', 'contentBase64'];
-    protected $with = ['user', 'from'];
+    protected $with = ['user', 'from', 'to'];
     protected $casts = [
         'images' => 'json',
     ];
@@ -29,6 +29,11 @@ class Comment extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function to()
+    {
+        return $this->user();
     }
 
     public function from()

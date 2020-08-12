@@ -35,6 +35,8 @@ class SubjectController extends Controller
         };
         $comments = $builder()->skip($size * request('page') - $size)->take($size)->get();
         $total = $builder()->count();
+        $subject->makeHidden('content');
+        $comments->makeHidden('content');
         return view('subject.item', compact('subject', 'comments', 'total'));
     }
 

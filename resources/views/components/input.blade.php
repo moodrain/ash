@@ -32,8 +32,14 @@
                 type="{{ $type }}"
 
                 @if($type == 'textarea')
-                autosize
+                        @isset($row)
+                                :rows="{{ $row }}"
+                        @else
+                                autosize
+                        @endisset
                 @endif
+
+
 
                 @endisset
 

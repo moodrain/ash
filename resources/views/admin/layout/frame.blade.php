@@ -25,7 +25,7 @@
 
                 </el-header>
 
-                <el-main style="width: 100%;height: 100%;background: #b4f3f4">
+                <el-main ref="main" style="width: 100%;height: 100%;background: #b4f3f4;overflow: scroll;">
                     @yield('main')
                 </el-main>
 
@@ -65,7 +65,7 @@
 
                     </el-header>
 
-                    <el-main style="width: 100%;height: 100%;background: #b4f3f4">
+                    <el-main ref="main" style="width: 100%;height: 100%;background: #b4f3f4;overflow: scroll;">
                         @yield('main')
                     </el-main>
 

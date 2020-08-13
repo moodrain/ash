@@ -60,7 +60,7 @@ class DatabaseSeeder extends Seeder
             'fromUserId' => 2,
             'subjectId' => 1,
             'userId' => 1,
-            'content' => "#### Title \n\n Comment",
+            'content' => "Comment-1",
             'images' => array_fill(0, 3, 'https://s1.moodrain.cn/test/img/img.jpg'),
             'orderId' => 1,
         ]);
@@ -69,7 +69,7 @@ class DatabaseSeeder extends Seeder
             'subjectId' => 1,
             'commentId' => 1,
             'userId' => 2,
-            'content' => "#### Title \n\n SubComment",
+            'content' => "SubComment-1-1",
             'images' => array_fill(0, 3, 'https://s1.moodrain.cn/test/img/img.jpg'),
             'orderId' => 1,
         ]);
@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
             'subjectId' => 1,
             'commentId' => 2,
             'userId' => 3,
-            'content' => "#### Title \n\n SubComment",
+            'content' => "SubSubComment-1-1-1",
             'images' => array_fill(0, 3, 'https://s1.moodrain.cn/test/img/img.jpg'),
             'orderId' => 1,
         ]);
@@ -86,7 +86,7 @@ class DatabaseSeeder extends Seeder
             'fromUserId' => 1,
             'subjectId' => 1,
             'userId' => 1,
-            'content' => "#### Title \n\n Comment",
+            'content' => "Comment-2",
             'images' => array_fill(0, 3, 'https://s1.moodrain.cn/test/img/img.jpg'),
             'orderId' => 4,
         ]);

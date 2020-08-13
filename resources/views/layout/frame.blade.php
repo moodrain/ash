@@ -17,7 +17,7 @@
                         @include('layout.frame-nav')
 
                         <el-submenu index="user">
-                            <template slot="title">{{ user() ? user()->name : '游客' }}</template>
+                            <template slot="title">{{ user() ? user()->name : 'Guest' }}</template>
                             @if(user())
                                 <el-menu-item index="user-login" @click="$to('/profile')">设置</el-menu-item>
                                 <a href="javascript:" onclick="document.querySelector('#logout').submit()"><el-menu-item index="user-logout">登出</el-menu-item></a>
@@ -32,7 +32,7 @@
 
                 </el-header>
 
-                <el-main style="width: 100%;height: 100%;background: #b4f3f4">
+                <el-main ref="main" style="width: 100%;height: 100%;background: #b4f3f4;overflow: scroll;">
                     @yield('main')
                 </el-main>
 
@@ -64,7 +64,7 @@
                     <el-header style="user-select: none;background-color: #545c64;color: #fff;line-height: 60px">
 
                         <el-dropdown style="float: right">
-                            <p style="cursor: pointer;color: #fff">{{ user() ? user()->name : '游客' }} <i class="el-icon-arrow-down el-icon--right"></i></p>
+                            <p style="cursor: pointer;color: #fff">{{ user() ? user()->name : 'Guest' }} <i class="el-icon-arrow-down el-icon--right"></i></p>
                             <el-dropdown-menu slot="dropdown">
                                 @if(user())
                                     <el-dropdown-item><a href="/profile">设置</a></el-dropdown-item>
@@ -78,7 +78,7 @@
 
                     </el-header>
 
-                    <el-main style="width: 100%;height: 100%;background: #b4f3f4">
+                    <el-main ref="main" style="width: 100%;height: 100%;background: #b4f3f4;overflow: scroll;">
                         @yield('main')
                     </el-main>
 

@@ -17,7 +17,7 @@
                         <div slot="header">
                             <div style="display: inline-block;width: 60%">Images</div>
                             <div style="display: inline-block;width: 38%;text-align: right">
-                                <el-upload multiple action="/subject/upload" :on-success="uploadOk" :show-file-list="false" :with-credentials="true">
+                                <el-upload multiple action="/subject/upload" :on-success="uploadOk" :show-file-list="false" :with-credentials="true" before-upload="preUpload" accept="image/*">
                                     <el-button slot="trigger" icon="el-icon-upload2" size="small"></el-button>
                                 </el-upload>
                             </div>
@@ -75,6 +75,13 @@
             },
             removeImage(index) {
                 this.form.images.splice(index, 1)
+            },
+            preUpload(img) {
+                if (img.size > 1024 * 1024 * 10) {
+                    this.$notify.warning('image size limit is 10 M')
+                    return false
+                }
+                return true
             }
         },
         mounted() {

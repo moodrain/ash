@@ -81,7 +81,27 @@
 
                 <el-form>
                     <x-input exp="model:comment.content;type:textarea;row:4;ref:commentInput" />
-                    <el-button>Submit</el-button>
+                    <el-form-item>
+                    <el-card>
+                        <div slot="header">
+                            <div style="display: inline-block;width: 60%">Images</div>
+                            <div style="display: inline-block;width: 38%;text-align: right">
+                                <el-upload multiple action="/subject/upload" :on-success="uploadOk" :show-file-list="false" :with-credentials="true" :before-upload="preUpload" accept="image/*">
+                                    <el-button slot="trigger" icon="el-icon-upload2" size="small"></el-button>
+                                </el-upload>
+                            </div>
+                        </div>
+                        <div class="preview">
+                            <img :src="src" v-for="(src, index) in comment.images" :key="index" @click.right.prevent="removeImage(index)" style="max-width: 100px;max-height: 100px;object-fit: contain;cursor: pointer;margin: 2px;" />
+                        </div>
+                        @if(mobile())
+                            <p v-if="comment.images.length > 0">Long Press to Remove</p>
+                        @else
+                            <p v-if="comment.images.length > 0">Right Click to Remove</p>
+                        @endif
+                    </el-card>
+                    </el-form-item>
+                    <el-form-item><el-button>Submit</el-button></el-form-item>
                 </el-form>
             @endauth
             @guest
@@ -115,6 +135,7 @@ new Vue({
             },
             comment: {
                 content: '',
+                images: [],
             }
         }
     },
@@ -136,9 +157,28 @@ new Vue({
         },
         replySubject() {
             this.toBottom()
+            this.reply.commentId = null
+            this.reply.user.id = null
+            this.reply.user.name = ''
         },
         replyComment(comment) {
             this.toBottom()
+            this.reply.commentId = comment.id
+            this.reply.user.id = comment.from.id
+            this.reply.user.name = comment.from.name
+        },
+        uploadOk(rs) {
+            rs.code === 0 ? this.comment.images.push(rs.data) : this.$notify.warning(rs.msg)
+        },
+        removeImage(index) {
+            this.comment.images.splice(index, 1)
+        },
+        preUpload(img) {
+            if (img.size > 1024 * 1024 * 10) {
+                this.$notify.warning('image size limit is 10 M')
+                return false
+            }
+            return true
         }
     },
     mounted() {

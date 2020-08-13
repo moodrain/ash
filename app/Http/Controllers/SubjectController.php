@@ -81,6 +81,11 @@ class SubjectController extends Controller
         }
         $this->vld(['file' => 'file']);
         $file = request()->file('file');
+        $mbMax = 10;
+        if ($file->getSize() > 10) {
+//        if ($file->getSize() > $mbMax * 1024 * 1024) {
+            return ers('max file size is ' . $mbMax . ' M');
+        }
         $tmp = $file->getRealPath();
         $ext = $file->getClientOriginalExtension();
         $name = md5_file($tmp);

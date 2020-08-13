@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Subject;
+use Illuminate\Support\Facades\DB;
 use function GuzzleHttp\Psr7\mimetype_from_filename;
 
 class SubjectController extends Controller
@@ -82,8 +83,7 @@ class SubjectController extends Controller
         $this->vld(['file' => 'file']);
         $file = request()->file('file');
         $mbMax = 10;
-        if ($file->getSize() > 10) {
-//        if ($file->getSize() > $mbMax * 1024 * 1024) {
+        if ($file->getSize() > $mbMax * 1024 * 1024) {
             return ers('max file size is ' . $mbMax . ' M');
         }
         $tmp = $file->getRealPath();
@@ -95,6 +95,41 @@ class SubjectController extends Controller
             return rs('/subject/upload/' . $name . '.' . $ext);
         } catch (\Throwable $e) {
             return ers($e->getMessage());
+        }
+    }
+
+    public function comment()
+    {
+        $this->vld([
+            'subjectId' => 'required|exists:subjects,id',
+            'commentId' => 'exists:comments,id',
+            'content' => 'required',
+            'images' => 'array',
+        ]);
+        try {
+            DB::beginTransaction();
+            $subject = Subject::query()->find(request('subjectId'));
+            $commentReply = request('commentId') ? Comment::query()->find(request('commentId')) : null;
+            $comment = new Comment(request()->only('content', 'images', 'subjectId', 'commentId'));
+            $comment->fromUserId = uid();
+            $comment->userId = $commentReply ? $commentReply->fromUserId : $subject->userId;
+            $comment->orderId = $commentReply ? $commentReply->orderId : 0;
+            $comment->save();
+            ! $commentReply && $comment->update(['orderId' => $comment->id]);
+            $size = 20;
+            $count = Comment::query()
+                ->where('subject_id', request('subjectId'))
+                ->where('order_id', '<=', $comment->orderId)
+                ->where('id', '<=', $comment->id)
+                ->count();
+            $page = ceil($count / $size);
+            DB::commit();
+            $query = ['page' => $page];
+            ! $commentReply && $query['bottom'] = 1;
+            return $this->directOk('/subject/' . request('subjectId') . '?' . http_build_query($query));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return $this->backErr($e->getMessage());
         }
     }
 

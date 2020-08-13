@@ -49,7 +49,7 @@
             </div>
             <div class="mdui-typo" v-html="content(comment.contentBase64)"></div>
             <p class="preview">
-                <img style="max-width: 100px;max-height: 100px;object-fit: contain;cursor: pointer;margin: 1px;" :src="src" v-for="(src, index) in subject.images" :key="index" />
+                <img style="max-width: 100px;max-height: 100px;object-fit: contain;cursor: pointer;margin: 1px;" :src="src" v-for="(src, index) in comment.images" :key="index" />
             </p>
             <div v-if="! comment.commentId">
                 <el-divider></el-divider>
@@ -101,7 +101,7 @@
                         @endif
                     </el-card>
                     </el-form-item>
-                    <el-form-item><el-button>Submit</el-button></el-form-item>
+                    <el-form-item><el-button @click="submit">Submit</el-button></el-form-item>
                 </el-form>
             @endauth
             @guest
@@ -134,8 +134,8 @@ new Vue({
                 },
             },
             comment: {
-                content: '',
-                images: [],
+                content: '{{ old('content') }}',
+                images: @json(old('images') ?? []),
             }
         }
     },
@@ -179,10 +179,24 @@ new Vue({
                 return false
             }
             return true
+        },
+        submit() {
+            this.$submit('/subject/comment', {
+                subjectId: this.subject.id,
+                commentId: this.reply.commentId,
+                content: this.comment.content,
+                images: this.comment.images,
+            })
         }
     },
     mounted() {
         @include('piece.init')
+        if (this.$query('bottom')) {
+            this.$refs.main.$el.scroll({
+                top: 9999,
+                left: 0,
+            })
+        }
     }
 })
 </script>

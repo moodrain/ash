@@ -78,7 +78,7 @@ class SubjectController extends Controller
     public function upload($file = null)
     {
         if (request()->isMethod('get')) {
-            return response(file_get_contents(storage_path('app/upload/subject/' . $file)))->header('Content-Type', mimetype_from_filename($file));
+            return response(file_get_contents(storage_path('app/upload/subject/' . basename($file))))->header('Content-Type', mimetype_from_filename($file));
         }
         $this->vld(['file' => 'file']);
         $file = request()->file('file');

@@ -3,19 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\File;
-use Symfony\Component\Finder\SplFileInfo;
 use function GuzzleHttp\Psr7\mimetype_from_filename;
 
 class ExplorerController extends Controller
 {
     private $base;
-    private $routeUrl;
 
     public function __construct()
     {
         parent::__construct();
         $this->base = storage_path('app');
-        $this->routeUrl = '/admin/explorer/content';
     }
 
     public function index()
@@ -24,25 +21,32 @@ class ExplorerController extends Controller
         $realPath = $this->realPath($path);
         ! File::exists($realPath) && abort(404);
         $directories = File::directories($realPath);
-        $files = File::files($realPath);
+        $originFiles = File::files($realPath);
         $directories = array_map(function($d) use ($path) {
+            $d = str_replace('\\', '\/', $d);
             return [
-                'no' => explode('.', basename($d)[0]),
+                'no' => explode('.', basename($d))[0],
                 'name' => basename($d),
                 'path' => $path . ($path ? '/' : '') . basename($d),
             ];
         }, $directories);
-        $files = array_map(function(SplFileInfo $f) use ($path) {
-            return [
-                'no' => $f->getFilenameWithoutExtension(),
-                'file' => $path . '/' . $f->getBasename(),
-                'name' => $f->getBasename(),
-                'size' => (int) ($f->getSize() / 1024),
-                'ext' => $f->getExtension(),
-                'img' => @exif_imagetype($f->getRealPath()) !== false,
-                'url' => $this->routeUrl . '?file=' . $path . ($path ? '/' : '') . $f->getBasename(),
-            ];
-        }, $files);
+        $routeUri = parse_url(route('explorer.content'))['path'];
+        $files = [];
+        foreach($originFiles as $f) {
+            try {
+                $files[] = [
+                    'no' => $f->getFilenameWithoutExtension(),
+                    'file' => $path . '/' . $f->getBasename(),
+                    'name' => $f->getBasename(),
+                    'size' => (int)($f->getSize() / 1024),
+                    'ext' => $f->getExtension(),
+                    'img' => @exif_imagetype($f->getRealPath()) !== false,
+                    'url' => $routeUri . '?file=' . $path . ($path ? '/' : '') . $f->getBasename(),
+                ];
+            } catch (\Throwable $e) {
+                continue;
+            }
+        }
         usort($files, function($a, $b) {
             return (is_numeric($a['no']) && is_numeric($b['no'])) ? $a['no'] - $b['no'] : strcmp($a['name'], $b['name']);
         });

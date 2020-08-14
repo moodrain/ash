@@ -21,7 +21,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->namespace('Admin')->group
     Route::post('subject-category/destroy', 'SubjectCategoryController@destroy');
 
     Route::get('explorer', 'ExplorerController@index');
-    Route::get('explorer/content', 'ExplorerController@content');
+    Route::get('explorer/content', 'ExplorerController@content')->name('explorer.content');
     Route::post('explorer/upload', 'ExplorerController@upload');
     Route::post('explorer/delete', 'ExplorerController@delete');
     Route::post('explorer/mkdir', 'ExplorerController@mkdir');

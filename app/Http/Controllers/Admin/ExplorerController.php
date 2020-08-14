@@ -8,6 +8,16 @@ use function GuzzleHttp\Psr7\mimetype_from_filename;
 
 class ExplorerController extends Controller
 {
+    private $base;
+    private $routeUrl;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->base = storage_path('app');
+        $this->routeUrl = '/admin/explorer/content';
+    }
+
     public function index()
     {
         $path = $this->safePath(request('path'));
@@ -30,7 +40,7 @@ class ExplorerController extends Controller
                 'size' => (int) ($f->getSize() / 1024),
                 'ext' => $f->getExtension(),
                 'img' => @exif_imagetype($f->getRealPath()) !== false,
-                'url' => '/admin/explorer/content?file=' . $path . ($path ? '/' : '') . $f->getBasename(),
+                'url' => $this->routeUrl . '?file=' . $path . ($path ? '/' : '') . $f->getBasename(),
             ];
         }, $files);
         usort($files, function($a, $b) {
@@ -158,6 +168,6 @@ class ExplorerController extends Controller
 
     private function realPath($path)
     {
-        return storage_path('app/' . $path);
+        return $this->base . '/' . $path;
     }
 }

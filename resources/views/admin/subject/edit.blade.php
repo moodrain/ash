@@ -10,7 +10,7 @@
                     <x-input exp="model:form.title;pre:Title" />
                     <x-select exp="model:form.categoryId;label:Category;key:id;selectLabel:name;value:id;data:categories" />
                     <x-select exp="model:form.userId;label:User;key:id;selectLabel:name;value:id;data:users" />
-                    <x-input exp="model:form.content;label:Content;type:textarea" />
+                    <x-input exp="model:form.content;label:Content;type:textarea;row:4" />
                     <el-card>
                         <div slot="header">
                             <div style="display: inline-block;width: 60%">Images</div>

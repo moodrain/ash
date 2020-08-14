@@ -24,9 +24,9 @@
                         <img :src="src" v-for="(src, index) in form.images" :key="index" @click.right.prevent="removeImage(index)" style="max-width: 100px;max-height: 100px;object-fit: contain;cursor: pointer;margin: 2px;" />
                     </div>
                     @if(mobile())
-                        <p>Long Press to Remove</p>
+                        <p v-if="form.images.length > 0">Long Press to Remove</p>
                     @else
-                        <p>Right Click to Remove</p>
+                        <p v-if="form.images.length > 0">Right Click to Remove</p>
                     @endif
                 </el-card>
                 <br />

@@ -18,9 +18,7 @@ class SubjectCategoryController extends Controller
     {
         if (request()->isMethod('post')) {
             $isUpdate = request()->filled('id');
-            $this->rules = [
-                'title' => 'name',
-            ];
+            $this->rules = [];
             $isUpdate && $this->rules['id'] = 'exists:' . $this->table();
             $this->rules['name'] = $isUpdate
                 ? ['required', Rule::unique($this->table())->ignore(request('id'))]

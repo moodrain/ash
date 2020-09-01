@@ -15,7 +15,7 @@
                         <div slot="header">
                             <div style="display: inline-block;width: 60%">Images</div>
                             <div style="display: inline-block;width: 38%;text-align: right">
-                                <el-upload multiple action="/subject/upload" :on-success="uploadOk" :show-file-list="false" :with-credentials="true" before-upload="preUpload" accept="image/*">
+                                <el-upload multiple action="/subject/upload" :on-success="uploadOk" :show-file-list="false" :with-credentials="true" :before-upload="preUpload" accept="image/*">
                                     <el-button slot="trigger" icon="el-icon-upload2" size="small"></el-button>
                                 </el-upload>
                             </div>

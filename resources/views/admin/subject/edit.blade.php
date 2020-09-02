@@ -57,7 +57,7 @@
                     userId: {{ bv('userId', null) }},
                     categoryId: {{ bv('categoryId') }},
                     images: @json(bv('images')),
-                    content: atob('{{ old('content') ? base64_encode(old('content')) : bv('contentBase64') }}')
+                    content: $decodeBase64('{{ old('content') ? base64_encode(old('content')) : bv('contentBase64') }}')
                 },
                 users: @json(\App\Models\User::query()->get(['id', 'name'])),
                 categories: @json(\App\Models\Subject\Category::query()->get(['id', 'name'])),

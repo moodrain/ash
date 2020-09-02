@@ -62,7 +62,7 @@
                     fromUserId: {{ bv('fromUserId', null) }},
                     orderId: {{ bv('orderId', null) }},
                     images: @json(bv('images')),
-                    content: atob('{{ old('content') ? base64_encode(old('content')) : bv('contentBase64') }}')
+                    content: $decodeBase64('{{ old('content') ? base64_encode(old('content')) : bv('contentBase64') }}')
                 },
                 users: @json(\App\Models\User::query()->get(['id', 'name'])),
                 subjects: @json(\App\Models\Subject::query()->get(['id', 'title'])),

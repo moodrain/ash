@@ -142,7 +142,7 @@ new Vue({
     methods: {
         @include('piece.method')
         content(base) {
-            return this.$marked(atob(base))
+            return this.$marked($decodeBase64(base))
         },
         toBottom() {
             let el = this.$refs.main.$el

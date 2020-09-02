@@ -57,7 +57,7 @@
                     id: {{ request('id', 'null') }},
                     title: '{{ bv('title') }}',
                     categoryId: {{ bv('categoryId', null) }},
-                    content: atob('{{ old('content') ? base64_encode(old('content')) : bv('contentBase64') }}'),
+                    content: $decodeBase64('{{ old('content') ? base64_encode(old('content')) : bv('contentBase64') }}'),
                     images: @json(bv('images')),
                 },
                 categories: @json(\App\Models\Subject\Category::query()->get(['id', 'name'])),

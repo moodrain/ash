@@ -50,7 +50,7 @@
                     <el-menu style="height: 100%;width: 100%" :default-active="menuActive" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
 
                         <el-container style="width: 100%;height: 60px;line-height: 60px;">
-                            <p style="color: white;font-size: 1.4em;width: 100%;text-align: center;user-select: none">{{ config('info.name') }}</p>
+                            <p style="color: white;font-size: 1.4em;width: 100%;text-align: center;user-select: none">{{ config('app.name') }}</p>
                         </el-container>
 
                         @include('layout.frame-nav')

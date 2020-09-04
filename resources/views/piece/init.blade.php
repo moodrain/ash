@@ -19,3 +19,4 @@ images.forEach(e => {
         e.stopPropagation()
     })
 })
+document.querySelector('#loading').style['z-index'] = -1

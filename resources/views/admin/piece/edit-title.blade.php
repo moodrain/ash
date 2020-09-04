@@ -1,7 +1,16 @@
+@php
+    $getTitle = function() use ($m) {
+        $navs = config('view.admin.nav');
+        $name = $m;
+        foreach ($navs as $nav) {
+            if ($nav[0] == $m) {
+                $name = $nav[1];
+            }
+        }
+        return $name . '编辑';
+    };
+@endphp
+
 @section('title')
-    @if($d ?? '')
-        {{ ucfirst($m) }} Edit
-    @else
-        New {{ ucfirst($m) }}
-    @endif
+    {{ $getTitle() }}
 @endsection

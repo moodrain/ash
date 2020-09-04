@@ -4,6 +4,9 @@
 @endsection
 
 @section('html')
+
+    <div id="loading" style="position: absolute;z-index: 3000;background: #b4f3f4;width: 100%;height: 100%"></div>
+
     @if(mobile())
 
         <div id="app">

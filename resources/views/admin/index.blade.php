@@ -21,8 +21,15 @@ new Vue({
     el: '#app',
     data () {
         return {
+            @include('admin.piece.data')
             menuActive: 'dashboard'
         }
+    },
+    methods: {
+        @include('admin.piece.method')
+    },
+    mounted() {
+        @include('admin.piece.init')
     }
 })
 </script>

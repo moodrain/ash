@@ -55,7 +55,7 @@
                     id: {{ bv('id', null) }},
                     title: '{{ bv('title') }}',
                     userId: {{ bv('userId', null) }},
-                    categoryId: {{ bv('categoryId') }},
+                    categoryId: {{ bv('categoryId', null) }},
                     images: @json(bv('images')),
                     content: $decodeBase64('{{ old('content') ? base64_encode(old('content')) : bv('contentBase64') }}')
                 },

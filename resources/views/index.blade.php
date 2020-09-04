@@ -21,8 +21,15 @@ new Vue({
     el: '#app',
     data () {
         return {
+            @include('piece.data')
             menuActive: 'home'
         }
+    },
+    methods: {
+        @include('piece.method')
+    },
+    mounted() {
+        @include('piece.init')
     }
 })
 </script>

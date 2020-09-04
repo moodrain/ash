@@ -1,6 +1,6 @@
 @extends('admin.layout.frame')
 
-@section('title', 'Explorer')
+@section('title', '文件管理')
 
 @section('main')
     <el-row>

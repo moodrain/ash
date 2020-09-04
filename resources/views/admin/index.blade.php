@@ -1,6 +1,6 @@
 @extends('admin.layout.frame')
 
-@section('title', 'Dashboard')
+@section('title', '面板')
 
 @section('main')
     <el-row>
@@ -8,7 +8,7 @@
             <br />
             <el-card>
                 <br />
-                <p>Greeting {{ user()->name }}</p>
+                <p>你好 {{ user()->name }}</p>
                 <br />
             </el-card>
         </el-col>

@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title', 'Login')
+@section('title', '登录')
 @section('html')
     <div id="app">
         <br />
@@ -7,10 +7,10 @@
             <el-col :span="6" :offset="9" :xs="{span:20,offset:2}">
                 <el-card>
                     <el-form>
-                        <x-input exp="model:form.email;pre:Email;ref:email" />
-                        <x-input exp="model:form.password;pre:Password;type:password" />
+                        <x-input exp="model:form.email;pre:邮箱;ref:email" />
+                        <x-input exp="model:form.password;pre:密码;type:password" />
                         <el-form-item>
-                            <el-button @click="login">Login</el-button>
+                            <el-button @click="login">登录</el-button>
                         </el-form-item>
                     </el-form>
                 </el-card>

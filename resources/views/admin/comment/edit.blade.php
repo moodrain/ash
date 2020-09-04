@@ -7,15 +7,15 @@
             <el-card>
                 <el-form>
                     <x-admin.edit-id :d="$d" />
-                    <x-select exp="model:form.subjectId;label:Subject;key:id;selectLabel:title;value:id;data:subjects" />
-                    <x-select exp="model:form.fromUserId;label:From;key:id;selectLabel:name;value:id;data:users" />
-                    <x-select exp="model:form.userId;label:To;key:id;selectLabel:name;value:id;data:users" />
-                    <x-input exp="model:form.commentId;pre:Comment ID;type:number" />
-                    <x-input exp="model:form.orderId;pre:Order ID;type:number" />
-                    <x-input exp="model:form.content;label:Content;type:textarea;row:4" />
+                    <x-select exp="model:form.subjectId;label:主题;key:id;selectLabel:title;value:id;data:subjects" />
+                    <x-select exp="model:form.fromUserId;label:来源用户;key:id;selectLabel:name;value:id;data:users" />
+                    <x-select exp="model:form.userId;label:目标用户;key:id;selectLabel:name;value:id;data:users" />
+                    <x-input exp="model:form.commentId;pre:回复ID;type:number" />
+                    <x-input exp="model:form.orderId;pre:排序ID;type:number" />
+                    <x-input exp="model:form.content;label:内容;type:textarea;row:4" />
                     <el-card>
                         <div slot="header">
-                            <div style="display: inline-block;width: 60%">Images</div>
+                            <div style="display: inline-block;width: 60%">图片</div>
                             <div style="display: inline-block;width: 38%;text-align: right">
                                 <el-upload multiple action="/subject/upload" :on-success="uploadOk" :show-file-list="false" :with-credentials="true" before-upload="preUpload" accept="image/*">
                                     <el-button slot="trigger" icon="el-icon-upload2" size="small"></el-button>
@@ -26,9 +26,9 @@
                             <img :src="src" v-for="(src, index) in form.images" :key="index" @click.right.prevent="removeImage(index)" style="max-width: 100px;max-height: 100px;object-fit: contain;cursor: pointer;margin: 2px;" />
                         </div>
                         @if(mobile())
-                            <p v-if="form.images.length > 0">Long Press to Remove</p>
+                            <p v-if="form.images.length > 0">长按删除</p>
                         @else
-                            <p v-if="form.images.length > 0">Right Click to Remove</p>
+                            <p v-if="form.images.length > 0">右键删除</p>
                         @endif
                     </el-card>
                     <br />
@@ -78,7 +78,7 @@
             },
             preUpload(img) {
                 if (img.size > 1024 * 1024 * 10) {
-                    this.$notify.warning('image size limit is 10 M')
+                    this.$notify.warning('图片大小不能超过 10 M')
                     return false
                 }
                 return true

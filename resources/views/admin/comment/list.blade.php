@@ -6,9 +6,9 @@
 <el-card>
     <el-form inline>
         <x-input exp="model:search.id;pre:ID" />
-        <x-input exp="model:search.commentId;pre:Comment ID" />
-        <x-select exp="model:search.fromUserId;label:User;key:id;selectLabel:name;value:id;data:users" />
-        <x-select exp="model:search.subjectId;label:Subject;key:id;selectLabel:title;value:id;data:subjects" />
+        <x-input exp="model:search.commentId;pre:回复ID" />
+        <x-select exp="model:search.fromUserId;label:用户;key:id;selectLabel:name;value:id;data:users" />
+        <x-select exp="model:search.subjectId;label:主题;key:id;selectLabel:title;value:id;data:subjects" />
         <x-sort />
         <x-admin.list-head-btn :m="$m" />
     </el-form>
@@ -18,16 +18,16 @@
     <el-table :data="list" height="560" border  @selection-change="selectChange">
         <el-table-column type="selection" width="55"></el-table-column>
         <el-table-column prop="id" label="ID" width="60"></el-table-column>
-        <el-table-column prop="subject.title" label="Subject"></el-table-column>
-        <el-table-column prop="from.name" label="User"></el-table-column>
-        <el-table-column prop="contentShort" label="Content"></el-table-column>
-        <el-table-column label="Image">
+        <el-table-column prop="subject.title" label="主题"></el-table-column>
+        <el-table-column prop="from.name" label="用户"></el-table-column>
+        <el-table-column prop="contentShort" label="内容"></el-table-column>
+        <el-table-column label="图片">
             <template slot-scope="scope">
                 <el-image @click="$open(src)" style="max-width:20%;margin: 1%;cursor: pointer" fit="contain" v-for="(src, index) in scope.row.images" :key="index" :src="src"></el-image>
             </template>
         </el-table-column>
-        <el-table-column prop="commentId" label="Comment ID"></el-table-column>
-        <el-table-column prop="createdAt" label="CreatedAt" width="160"></el-table-column>
+        <el-table-column prop="commentId" label="回复ID"></el-table-column>
+        <el-table-column prop="createdAt" label="时间" width="160"></el-table-column>
         <x-admin.list-body-col :m="$m" />
     </el-table>
     <x-pager />

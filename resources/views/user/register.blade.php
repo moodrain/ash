@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title', 'Register')
+@section('title', '注册')
 @section('html')
     <div id="app">
         <br />
@@ -7,14 +7,14 @@
             <el-col :span="6" :offset="9" :xs="{span:20,offset:2}">
                 <el-card>
                     <el-form>
-                        <x-input exp="model:form.email;pre:Email" />
-                        <x-input exp="model:form.name;pre:Name" />
-                        <x-input exp="model:form.password;pre:Password;type:password" />
-                        <x-input exp="model:form.rePassword;pre:RePassword;type:password" />
+                        <x-input exp="model:form.email;pre:邮箱" />
+                        <x-input exp="model:form.name;pre:名称" />
+                        <x-input exp="model:form.password;pre:密码;type:password" />
+                        <x-input exp="model:form.rePassword;pre:重复密码;type:password" />
                         <el-form-item>
-                            <el-button @click="register">Register</el-button>
+                            <el-button @click="register">注册</el-button>
                             <el-divider direction="vertical"></el-divider>
-                            <el-link href="/login">or Login</el-link>
+                            <el-link href="/login">或 登录</el-link>
                         </el-form-item>
                     </el-form>
                 </el-card>
@@ -43,11 +43,11 @@
                 @include('piece.method')
                 register() {
                     if (! this.form.email || ! this.form.password || ! this.form.name) {
-                        alert('some inputs are empty')
+                        alert('请完整填写表单')
                         return
                     }
                     if (this.form.password != this.form.rePassword) {
-                        alert('password not equal re password')
+                        alert('两次密码不一致')
                         return
                     }
                     $submit(this.form)

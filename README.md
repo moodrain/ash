@@ -14,9 +14,14 @@ starter of Laravel & Vue & ElementUI & Rium
 * app/Models/Builder.php
 * app/Models/User.php
 * app/Providers/AuthServiceProvider.php
+* app/Services/OssService.php
 > add model policy auto discover
+* config/aliyun.php
+> add aliyun oss config
 * config/app.php
 > set timezone PRC
+>
+> set lang zh
 * config/auth.php
 > set providers.user.model App\Models\User
 * config/session.php

@@ -1,6 +1,6 @@
 @extends('layout.frame')
 
-@section('title', 'Subject Detail')
+@section('title', '主题详情')
 
 @section('main')
 <el-row>
@@ -44,7 +44,7 @@
                 <span>@{{ subject.createdAtReadable }}</span>
                 @auth
                     <el-divider direction="vertical"></el-divider>
-                    <a href="javascript:" @click="replyComment(comment)">Reply</a>
+                    <a href="javascript:" @click="replyComment(comment)">回复</a>
                 @endauth
             </div>
             <div class="mdui-typo" v-html="content(comment.contentBase64)"></div>
@@ -58,7 +58,7 @@
                 <span>@{{ subject.createdAtReadable }}</span>
                 @auth
                     <el-divider direction="vertical"></el-divider>
-                    <a href="javascript:" @click="replyComment(comment)">Reply</a>
+                    <a href="javascript:" @click="replyComment(comment)">回复</a>
                 @endauth
             </div>
         </el-card>
@@ -72,10 +72,10 @@
             <el-divider></el-divider>
             @auth
             <p>
-                <span v-if="preview">Comment Preview</span>
-                <span v-if="! preview">Comment Edit</span>
+                <span v-if="preview">回复预览</span>
+                <span v-if="! preview">回复编辑</span>
                 <el-divider v-if="reply.commentId" direction="vertical"></el-divider>
-                <span v-if="reply.commentId"> Reply @{{ reply.user.name }}</span>
+                <span v-if="reply.commentId"> 回复 @{{ reply.user.name }}</span>
             </p>
             <br />
 
@@ -84,7 +84,7 @@
                     <el-form-item>
                     <el-card>
                         <div slot="header">
-                            <div style="display: inline-block;width: 60%">Images</div>
+                            <div style="display: inline-block;width: 60%">图片</div>
                             <div style="display: inline-block;width: 38%;text-align: right">
                                 <el-upload multiple action="/subject/upload" :on-success="uploadOk" :show-file-list="false" :with-credentials="true" :before-upload="preUpload" accept="image/*">
                                     <el-button slot="trigger" icon="el-icon-upload2" size="small"></el-button>
@@ -95,17 +95,17 @@
                             <img :src="src" v-for="(src, index) in comment.images" :key="index" @click.right.prevent="removeImage(index)" style="max-width: 100px;max-height: 100px;object-fit: contain;cursor: pointer;margin: 2px;" />
                         </div>
                         @if(mobile())
-                            <p v-if="comment.images.length > 0">Long Press to Remove</p>
+                            <p v-if="comment.images.length > 0">长按删除</p>
                         @else
-                            <p v-if="comment.images.length > 0">Right Click to Remove</p>
+                            <p v-if="comment.images.length > 0">右键删除</p>
                         @endif
                     </el-card>
                     </el-form-item>
-                    <el-form-item><el-button @click="submit">Submit</el-button></el-form-item>
+                    <el-form-item><el-button @click="submit">提交</el-button></el-form-item>
                 </el-form>
             @endauth
             @guest
-                Please login before comment
+                登录后评论
             @endguest
         </el-card>
     </el-col>
@@ -175,7 +175,7 @@ new Vue({
         },
         preUpload(img) {
             if (img.size > 1024 * 1024 * 10) {
-                this.$notify.warning('image size limit is 10 M')
+                this.$notify.warning('图片大小不能超过 10 M')
                 return false
             }
             return true

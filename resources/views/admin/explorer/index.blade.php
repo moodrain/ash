@@ -15,7 +15,7 @@
                         <el-button icon="el-icon-back" @click="parentPath"></el-button>
                         <el-form-item>
                             <el-input v-model="path" :placeholder="pagePath">
-                                <template slot="prepend">Path</template>
+                                <template slot="prepend">路径</template>
                             </el-input>
                         </el-form-item>
                         <el-button icon="el-icon-right" @click="$to('/admin/explorer', {path}, true)"></el-button>
@@ -33,7 +33,7 @@
             <br />
             <el-card>
                 <el-table :data="directories">
-                    <el-table-column label="Directory">
+                    <el-table-column label="目录">
                         <template slot-scope="scope">
                             <div style="cursor: pointer" @click="$to({path: scope.row.path})">@{{ scope.row.name }}</div>
                         </template>
@@ -50,7 +50,7 @@
             <br />
             <el-card>
                 <el-table :data="files">
-                    <el-table-column label="File">
+                    <el-table-column label="文件">
                         <template slot-scope="scope">
                             <div style="cursor: pointer;" @click="$open(scope.row.url)">@{{ scope.row.name }}</div>
                         </template>

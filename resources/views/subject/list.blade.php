@@ -1,14 +1,14 @@
 @extends('layout.frame')
 
-@section('title', 'Subject List')
+@section('title', '主题列表')
 
 @section('main')
 <el-row>
     <el-col :span="18" :xs="24">
         <el-card shadow="hover">
             <el-form inline>
-                <x-input exp="model:search.search;pre:Search" />
-                <x-select exp="model:search.categoryId;label:Category;key:id;selectLabel:name;value:id;data:categories" />
+                <x-input exp="model:search.search;pre:搜索" />
+                <x-select exp="model:search.categoryId;label:分类;key:id;selectLabel:name;value:id;data:categories" />
                 <el-button icon="el-icon-search" @click="this.$to(search)"></el-button>
             </el-form>
         </el-card>

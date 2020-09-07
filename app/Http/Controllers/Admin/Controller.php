@@ -75,6 +75,18 @@ class Controller extends BaseController
         return 'App\\Models' . $class;
     }
 
+    protected function modelName()
+    {
+        $navs = config('view.admin.nav');
+        $name = $m = $this->model();
+        foreach ($navs as $nav) {
+            if ($nav[0] == $m) {
+                $name = $nav[1];
+            }
+        }
+        return $name;
+    }
+
     protected function table()
     {
         $class = $this->modelClass();
@@ -85,9 +97,11 @@ class Controller extends BaseController
     {
         $model = Str::snake(Str::camel($this->model()), '-');
         $modelClass = $this->modelClass();
+        $modelName = $this->modelName();
         $initPara = [
             'm' => $model,
             'modelClass' => $modelClass,
+            'modelName' => $modelName,
         ];
         empty($para['d']) && $initPara['d'] = null;
         empty($para['l']) && $initPara['l'] = [];

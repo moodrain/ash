@@ -2,9 +2,9 @@ selectChange (selects) { this.selects = selects },
 more() { if(this.doMore) { this.doMore() } },
 doDelete(id) {
     if(this.selects.length > 0) {
-        this.$confirm('Confirm to Delete ' + this.selects.length + ' {{ $m }} ?', 'Confirm', {
-            confirmButtonText: 'Ok',
-            cancelButtonText: 'No',
+        this.$confirm('确认要删除 ' + this.selects.length + ' 项 {{ $modelName }} ?', '确认', {
+            confirmButtonText: '删除',
+            cancelButtonText: '取消',
             type: 'warning',
         }).then(() => {
             let ids = []
@@ -12,9 +12,9 @@ doDelete(id) {
             $submit('/admin/{{ $m }}/destroy', {ids})
         }).catch(() => {})
     } else {
-        this.$confirm('Confirm to Delete a {{ $m }} ?', 'Confirm', {
-            confirmButtonText: 'Ok',
-            cancelButtonText: 'No',
+        this.$confirm('确认要删除该 {{ $modelName }} ?', '确认', {
+            confirmButtonText: '删除',
+            cancelButtonText: '取消',
             type: 'warning',
         }).then(() => {
             $submit('/admin/{{ $m }}/destroy', {id})

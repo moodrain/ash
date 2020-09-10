@@ -8,6 +8,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class Controller extends BaseController
@@ -112,6 +113,16 @@ class Controller extends BaseController
     protected function backErr($errMsg)
     {
         return redirect()->back()->withInput()->withErrors(__($errMsg));
+    }
+
+    protected function api($rules, callable $handle) {
+        try {
+            $validator = Validator::make(request()->all(), $rules);
+            expIf($validator->fails(),$validator->errors()->first());
+            return $handle();
+        } catch (\Exception $e) {
+            return ers($e->getMessage());
+        }
     }
 
 }

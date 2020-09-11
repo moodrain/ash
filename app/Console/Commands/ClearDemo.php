@@ -40,6 +40,16 @@ class ClearDemo extends Command
                 // explorer
                 'app/Http/Controllers/Admin/ExplorerController.php',
                 'resources/views/admin/explorer',
+
+                // mail
+                'app/Mail',
+                'app/Jobs',
+
+                // oss
+                'app/Services',
+
+                // clear demo command
+                'app/Console/Commands/ClearDemo.php',
             ]);
         }
         foreach($files as $file) {

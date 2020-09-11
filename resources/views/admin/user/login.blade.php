@@ -1,8 +1,8 @@
 @extends('layout.app')
 @section('title', '登录')
 @section('html')
+    <div id="loading" style="position: absolute;z-index: 3000;background: #b4f3f4;width: 100%;height: 100%"></div>
     <div id="app">
-        <div id="loading" style="position: absolute;z-index: 3000;background: #b4f3f4;width: 100%;height: 100%"></div>
         <br />
         <el-row>
             <el-col :span="6" :offset="9" :xs="{span:20,offset:2}">

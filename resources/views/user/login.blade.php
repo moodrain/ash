@@ -23,7 +23,7 @@
 @endsection
 
 @section('js')
-    @include('layout.js')
+    @include('common.js')
     <script>
         let vue = new Vue({
             el: '#app',
@@ -55,5 +55,5 @@
 @endsection
 
 @section('css')
-    @include('layout.css')
+    @include('common.css')
 @endsection

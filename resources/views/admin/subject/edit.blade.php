@@ -73,7 +73,7 @@
             },
             preUpload(img) {
                 if (img.size > 1024 * 1024 * 10) {
-                    this.$notify.warning('图片大小不能超过 10 M')
+                    this.$notify.warning('{{ ____('image size cannot exceed') }} 10 M')
                     return false
                 }
                 return true

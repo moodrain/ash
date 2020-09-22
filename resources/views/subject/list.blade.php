@@ -1,14 +1,14 @@
 @extends('layout.frame')
 
-@section('title', '主题列表')
+@section('title', 'subject list')
 
 @section('main')
 <el-row>
     <el-col :span="18" :xs="24">
         <el-card shadow="hover">
             <el-form inline>
-                <x-input exp="model:search.search;pre:搜索" />
-                <x-select exp="model:search.categoryId;label:分类;key:id;selectLabel:name;value:id;data:categories" />
+                <x-input exp="model:search.search;pre:search" />
+                <x-select exp="model:search.categoryId;label:category;key:id;selectLabel:name;value:id;data:categories" />
                 <el-button icon="el-icon-search" @click="this.$to(search)"></el-button>
             </el-form>
         </el-card>
@@ -22,7 +22,7 @@
                 <el-divider direction="vertical"></el-divider>
                 <el-tag style="margin: 0">@{{ item.category.name }}</el-tag>
                 <el-divider v-if="item.userId == {{ uid() ?? 'null' }}" direction="vertical"></el-divider>
-                <a v-if="item.userId == {{ uid() ?? 'null' }}" :href="'/subject/edit?id=' + item.id">编辑</a>
+                <a v-if="item.userId == {{ uid() ?? 'null' }}" :href="'/subject/edit?id=' + item.id">{{ ___('edit') }}</a>
             </p>
             <p class="preview">
                 <img style="max-width: 100px;max-height: 100px;object-fit: contain;cursor: pointer;margin: 1px;" :src="src" v-for="(src, index) in item.images" :key="index" />

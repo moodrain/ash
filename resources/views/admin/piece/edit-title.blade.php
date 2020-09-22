@@ -1,3 +1,3 @@
 @section('title')
-    {{ $modelName }}编辑
+    {{ $modelName }} edit
 @endsection

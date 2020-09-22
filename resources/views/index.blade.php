@@ -1,6 +1,6 @@
 @extends('layout.frame')
 
-@section('title', '主页')
+@section('title', 'home')
 
 @section('main')
     <el-row>
@@ -8,7 +8,7 @@
             <br />
             <el-card>
                 <br />
-                <p>你好 {{ user()->name }}</p>
+                <p>{{ ___('greet') }} {{ user()->name }}</p>
                 <br />
             </el-card>
         </el-col>

@@ -23,6 +23,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $languages = request()->getLanguages();
+        foreach ($languages as $language) {
+            if (str_contains($language, 'zh')) {
+                break;
+            }
+            if (str_contains($language, 'en')) {
+                app()->setLocale('en');
+                break;
+            }
+        }
     }
 }

@@ -1,14 +1,13 @@
 @extends('admin.layout.frame')
-
 @include('admin.piece.list-title')
 
 @section('main')
 <el-card>
     <el-form inline>
-        <x-input exp="model:search.id;pre:ID" />
-        <x-input exp="model:search.commentId;pre:回复ID" />
-        <x-select exp="model:search.fromUserId;label:用户;key:id;selectLabel:name;value:id;data:users" />
-        <x-select exp="model:search.subjectId;label:主题;key:id;selectLabel:title;value:id;data:subjects" />
+        <x-input exp="model:search.id;pre:id" />
+        <x-input exp="model:search.commentId;pre:comment id" />
+        <x-select exp="model:search.fromUserId;label:user;key:id;selectLabel:name;value:id;data:users" />
+        <x-select exp="model:search.subjectId;label:subject;key:id;selectLabel:title;value:id;data:subjects" />
         <x-sort />
         <x-admin.list-head-btn :m="$m" />
     </el-form>

@@ -4,34 +4,34 @@ return [
 
     'admin' => [
         'nav' => [
-            ['dashboard', '面板', 'admin'],
-            ['subject', '主题', [
-                ['subject-list', '主题列表', 'admin/subject/list'],
-                ['subject-edit', '主题编辑', 'admin/subject/edit'],
+            ['dashboard', 'dash', 'admin'],
+            ['subject', 'subject', [
+                ['subject-list', 'subject list', 'admin/subject/list'],
+                ['subject-edit', 'subject edit', 'admin/subject/edit'],
             ]],
-            ['comment', '回复', [
-                ['comment-list', '回复列表', 'admin/comment/list'],
-                ['comment-edit', '回复编辑', 'admin/comment/edit'],
+            ['comment', 'comment', [
+                ['comment-list', 'comment list', 'admin/comment/list'],
+                ['comment-edit', 'comment edit', 'admin/comment/edit'],
             ]],
-            ['subject-category', '分类', [
-                ['subject-category-list', '分类列表', 'admin/subject-category/list'],
-                ['subject-category-edit', '分类编辑', 'admin/subject-category/edit'],
+            ['subject-category', 'subject-category', [
+                ['subject-category-list', 'subject-category list', 'admin/subject-category/list'],
+                ['subject-category-edit', 'subject-category edit', 'admin/subject-category/edit'],
             ]],
-            ['explorer', '文件管理', 'admin/explorer'],
+            ['explorer', 'explorer', 'admin/explorer'],
         ],
     ],
 
     'user' => [
         'nav' => [
             'pc' => [
-                ['home', '首页', ''],
-                ['subject', '主题', 'subject'],
-                ['subject-edit', '主题编辑', 'subject/edit'],
+                ['home', 'home', ''],
+                ['subject', 'subject', 'subject'],
+                ['subject-edit', 'subject edit', 'subject/edit'],
             ],
             'mobile' => [
-                ['home', '首页', ''],
-                ['subject', '主题', 'subject'],
-                ['subject-edit', '主题编辑', 'subject/edit'],
+                ['home', 'home', ''],
+                ['subject', 'subject', 'subject'],
+                ['subject-edit', 'subject edit', 'subject/edit'],
             ],
         ],
     ],

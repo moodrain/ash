@@ -1,6 +1,6 @@
 @extends('layout.frame')
 
-@section('title', '主题详情')
+@section('title', 'subject detail')
 
 @section('main')
 <el-row>
@@ -11,7 +11,7 @@
                 <el-divider direction="vertical"></el-divider>
                 <el-tag style="margin: 0">@{{ subject.category.name }}</el-tag>
                 <el-divider v-if="subject.userId == {{ uid() ?? 'null' }}" direction="vertical"></el-divider>
-                <a v-if="subject.userId == {{ uid() ?? 'null' }}" :href="'/subject/edit?id=' + subject.id">编辑</a>
+                <a v-if="subject.userId == {{ uid() ?? 'null' }}" :href="'/subject/edit?id=' + subject.id">{{ ___('edit') }}</a>
             </div>
             <div class="mdui-typo" v-html="content(subject.contentBase64)"></div>
             <p class="preview">
@@ -44,7 +44,7 @@
                 <span>@{{ subject.createdAtReadable }}</span>
                 @auth
                     <el-divider direction="vertical"></el-divider>
-                    <a href="javascript:" @click="replyComment(comment)">回复</a>
+                    <a href="javascript:" @click="replyComment(comment)">{{ ___('reply') }}</a>
                 @endauth
             </div>
             <div class="mdui-typo" v-html="content(comment.contentBase64)"></div>
@@ -175,7 +175,7 @@ new Vue({
         },
         preUpload(img) {
             if (img.size > 1024 * 1024 * 10) {
-                this.$notify.warning('图片大小不能超过 10 M')
+                this.$notify.warning('{{ ____('image size cannot exceed') }} 10 M')
                 return false
             }
             return true

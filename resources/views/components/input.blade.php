@@ -10,7 +10,7 @@
         @endisset
 
         @isset($label)
-        label="{{ $label }}"
+        label="{{ ____($label) }}"
         @endisset
 
 >
@@ -62,7 +62,7 @@
         >
 
                 @isset($pre)
-                        <template slot="prepend">{{ $pre }}</template>
+                        <template slot="prepend">{{ ____($pre) }}</template>
                 @endisset
 
         </el-input>

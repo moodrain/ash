@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title', '登录')
+@section('title', 'login')
 @section('html')
     <div id="loading" style="position: absolute;z-index: 3000;background: #b4f3f4;width: 100%;height: 100%"></div>
     <div id="app">
@@ -21,7 +21,7 @@
 @endsection
 
 @section('js')
-    @include('layout.js')
+    @include('common.js')
     <script>
         let vue = new Vue({
             el: '#app',
@@ -53,5 +53,5 @@
 @endsection
 
 @section('css')
-    @include('layout.css')
+    @include('common.css')
 @endsection

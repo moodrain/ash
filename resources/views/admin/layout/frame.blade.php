@@ -1,8 +1,5 @@
 @extends('admin.layout.app')
 
-@section('title')
-@endsection
-
 @section('html')
 
     <div id="loading" style="position: absolute;z-index: 3000;background: #b4f3f4;width: 100%;height: 100%"></div>
@@ -17,11 +14,11 @@
 
                     <el-menu style="height: 100%;width: max-content" :default-active="menuActive" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" mode="horizontal">
 
-                        @include('admin.layout.frame-nav')
+                        <x-frame-nav :key="'admin.nav'" />
 
                         <el-submenu index="user">
                             <template slot="title">{{ user()->name }}</template>
-                            <a href="javascript:" onclick="document.querySelector('#logout').submit()"><el-menu-item index="user-logout">登出</el-menu-item></a>
+                            <a href="javascript:" onclick="document.querySelector('#logout').submit()"><el-menu-item index="user-logout">{{ ___('logout') }}</el-menu-item></a>
                         </el-submenu>
 
                     </el-menu>
@@ -49,7 +46,7 @@
                             <p style="color: white;font-size: 1.4em;width: 100%;text-align: center;user-select: none">{{ env('APP_NAME') }}</p>
                         </el-container>
 
-                        @include('admin.layout.frame-nav')
+                        <x-frame-nav :key="'admin.nav'" />
 
                     </el-menu>
 
@@ -62,7 +59,7 @@
                         <el-dropdown style="float: right">
                             <p style="cursor: pointer;color: #fff">{{ user()->name }} <i class="el-icon-arrow-down el-icon--right"></i></p>
                             <el-dropdown-menu slot="dropdown">
-                                <el-dropdown-item><a href="javascript:" onclick="document.querySelector('#logout').submit()">登出</a></el-dropdown-item>
+                                <el-dropdown-item><a href="javascript:" onclick="document.querySelector('#logout').submit()">{{ ___('logout') }}</a></el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
 
@@ -86,11 +83,11 @@
 
 
 @section('js')
-    @include('admin.layout.js')
+    @include('common.js')
     @yield('script')
 @endsection
 
 @section('css')
-    @include('admin.layout.css')
+    @include('common.css')
     @yield('style')
 @endsection

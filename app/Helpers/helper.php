@@ -170,3 +170,19 @@ if (! function_exists('mobile'))
         return \Illuminate\Support\Str::of(request()->userAgent())->contains(['mobile', 'Mobile']);
     }
 }
+
+if (! function_exists('___'))
+{
+    function ___($word)
+    {
+        return __('word.' . $word);
+    }
+}
+
+if (! function_exists('____'))
+{
+    function ____($words)
+    {
+        return collect(explode(' ', $words))->map(function($e) { return ___($e); })->join(' ');
+    }
+}

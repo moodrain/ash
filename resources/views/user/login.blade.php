@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title', '登录')
+@section('title', 'login')
 @section('html')
     <div id="loading" style="position: absolute;z-index: 3000;background: #b4f3f4;width: 100%;height: 100%"></div>
     <div id="app">
@@ -8,12 +8,12 @@
             <el-col :span="6" :offset="9" :xs="{span:20,offset:2}">
                 <el-card>
                     <el-form>
-                        <x-input exp="model:form.email;pre:邮箱;ref:email" />
-                        <x-input exp="model:form.password;pre:密码;type:password;ref:password" />
+                        <x-input exp="model:form.email;pre:email;ref:email" />
+                        <x-input exp="model:form.password;pre:password;type:password;ref:password" />
                         <el-form-item>
-                            <el-button @click="login">登录</el-button>
+                            <el-button @click="login">{{ ___('login') }}</el-button>
                             <el-divider direction="vertical"></el-divider>
-                            <el-link href="/register">或 注册</el-link>
+                            <el-link href="/register">{{ ___('register') }}</el-link>
                         </el-form-item>
                     </el-form>
                 </el-card>

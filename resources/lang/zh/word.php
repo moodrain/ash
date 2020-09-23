@@ -1,5 +1,13 @@
 <?php
 return [
+    'time' => '时间',
+    'path' => '路径',
+    'directory' => '目录',
+    'file' => '文件',
+    'name' => '名称',
+    'email' => '邮箱',
+    'password' => '密码',
+    're-password' => '重复密码',
     'greet' => '你好',
     'home' => '主页',
     'dash' => '面板',
@@ -36,4 +44,6 @@ return [
     'title' => '标题',
     'content' => '内容',
     'reply' => '回复',
+    'source' => '来源',
+    'target' => '目标',
 ];

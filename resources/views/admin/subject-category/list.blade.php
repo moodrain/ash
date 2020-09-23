@@ -5,8 +5,8 @@
 @section('main')
 <el-card>
     <el-form inline>
-        <x-input exp="model:search.id;pre:ID" />
-        <x-input exp="model:search.name;pre:名称" />
+        <x-input exp="model:search.id;pre:id" />
+        <x-input exp="model:search.name;pre:name" />
         <x-sort />
         <x-admin.list-head-btn :m="$m" />
     </el-form>
@@ -15,9 +15,9 @@
 <el-card>
     <el-table :data="list" height="560" border  @selection-change="selectChange">
         <el-table-column type="selection" width="55"></el-table-column>
-        <el-table-column prop="id" label="ID" width="60"></el-table-column>
-        <el-table-column prop="name" label="名称"></el-table-column>
-        <el-table-column prop="createdAt" label="时间" width="160"></el-table-column>
+        <el-table-column prop="id" label="{{ ___('id') }}" width="60"></el-table-column>
+        <el-table-column prop="name" label="{{ ___('name') }}"></el-table-column>
+        <el-table-column prop="createdAt" label="{{ ___('time') }}" width="160"></el-table-column>
         <x-admin.list-body-col :m="$m" />
     </el-table>
     <x-pager />

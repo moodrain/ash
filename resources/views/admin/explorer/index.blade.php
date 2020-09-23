@@ -1,6 +1,6 @@
 @extends('admin.layout.frame')
 
-@section('title', '文件管理')
+@section('title', 'explorer')
 
 @section('main')
     <el-row>
@@ -15,7 +15,7 @@
                         <el-button icon="el-icon-back" @click="parentPath"></el-button>
                         <el-form-item>
                             <el-input v-model="path" :placeholder="pagePath">
-                                <template slot="prepend">路径</template>
+                                <template slot="prepend">{{ ___('path') }}</template>
                             </el-input>
                         </el-form-item>
                         <el-button icon="el-icon-right" @click="$to('/admin/explorer', {path}, true)"></el-button>
@@ -33,7 +33,7 @@
             <br />
             <el-card>
                 <el-table :data="directories">
-                    <el-table-column label="目录">
+                    <el-table-column label="{{ ___('directory') }}">
                         <template slot-scope="scope">
                             <div style="cursor: pointer" @click="$to({path: scope.row.path})">@{{ scope.row.name }}</div>
                         </template>
@@ -50,17 +50,17 @@
             <br />
             <el-card>
                 <el-table :data="files">
-                    <el-table-column label="文件">
+                    <el-table-column label="{{ ___('file') }}">
                         <template slot-scope="scope">
                             <div style="cursor: pointer;" @click="$open(scope.row.url)">@{{ scope.row.name }}</div>
                         </template>
                     </el-table-column>
-                    <el-table-column label="Preview" width="200">
+                    <el-table-column label="{{ ___('preview') }}" width="200">
                         <template slot-scope="scope">
                             <el-image v-if="scope.row.img" :src="scope.row.url" style="cursor: pointer;height: 60px;object-fit: contain" fit="contain" @click="$open(scope.row.url)" />
                         </template>
                     </el-table-column>
-                    <el-table-column label="Size" width="100">
+                    <el-table-column label="{{ ___('size') }}" width="100">
                         <template slot-scope="scope">
                             @{{ scope.row.size > 1024 ? parseInt(scope.row.size / 1024) + ' m' : scope.row.size + ' k' }}
                         </template>
@@ -69,7 +69,7 @@
                         <template slot-scope="scope">
                             <el-button @click="copy(scope.row.file)" icon="el-icon-document-copy"></el-button>
                             <el-button @click="move(scope.row.file)" icon="el-icon-scissors"></el-button>
-                            <el-button icon="el-icon-delete" @click="$confirm('confirm to delete ?').then(() => {$submit('/admin/explorer/delete', {file: scope.row.file})}).catch(() => {})"></el-button>
+                            <el-button icon="el-icon-delete" @click="$confirm('{{ ____('confirm delete directory') }}').then(() => {$submit('/admin/explorer/delete', {file: scope.row.file})}).catch(() => {})"></el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -107,7 +107,7 @@
                 },
                 rmdir(dir) {
                     let path = this.pagePath ? (this.pagePath + '/' + dir.name) : dir.name
-                    this.$confirm('confirm to rmdir ?').then(() => {
+                    this.$confirm('{{ ____('confirm delete file') }}').then(() => {
                         this.$submit('/admin/explorer/rmdir', {path})
                     }).catch(() => {})
                 },

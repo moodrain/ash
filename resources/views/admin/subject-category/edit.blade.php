@@ -8,7 +8,7 @@
             <el-card>
                 <el-form>
                     <x-admin.edit-id :d="$d" />
-                    <x-input exp="model:form.name;pre:名称" />
+                    <x-input exp="model:form.name;pre:name" />
                     <x-admin.edit-submit :d="$d" />
                 </el-form>
             </el-card>

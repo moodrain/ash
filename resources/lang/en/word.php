@@ -1,5 +1,13 @@
 <?php
 return [
+    'time' => 'Time',
+    'path' => 'Path',
+    'directory' => 'Directory',
+    'file' => 'File',
+    'name' => 'Name',
+    'email' => 'Email',
+    'password' => 'Password',
+    're-password' => 'Repeat Password',
     'greet' => 'Greeting',
     'home' => 'Home',
     'dash' => 'Dashboard',
@@ -39,4 +47,6 @@ return [
     'title' => 'Title',
     'content' => 'Content',
     'reply' => 'Reply',
+    'source' => 'Source',
+    'target' => 'Target'
 ];

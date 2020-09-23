@@ -73,7 +73,8 @@ class Controller extends BaseController
         return redirect()->back()->withInput()->withErrors(__($errMsg));
     }
 
-    protected function api($rules, callable $handle) {
+    protected function api($rules, callable $handle)
+    {
         try {
             $validator = Validator::make(request()->all(), $rules);
             expIf($validator->fails(),$validator->errors()->first());
@@ -82,5 +83,4 @@ class Controller extends BaseController
             return ers($e->getMessage());
         }
     }
-
 }

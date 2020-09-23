@@ -5,7 +5,7 @@ starter of Laravel & Vue & ElementUI & Rium
  
 * app/Console/Commands/test.php
 * app/Helpers/helper.php
-* app/Http/Controller.php
+* app/Http/Controller/*
 * app/Kernel.php
 > remove csrf token verify
 > remove require console.php
@@ -13,7 +13,8 @@ starter of Laravel & Vue & ElementUI & Rium
 * app/Models/Model.php
 * app/Models/Builder.php
 * app/Models/User.php
-* app/Providers/AuthServiceProvider.php
+* app/Providers/AppServiceProvider/php
+> add locale
 * app/Services/OssService.php
 > add model policy auto discover
 * config/aliyun.php
@@ -29,7 +30,7 @@ starter of Laravel & Vue & ElementUI & Rium
 > set encrypt true
 * config/view.php
 > add navigation bar config
-* database/create_posts_table.php
+* database/migrations/*
 * database/seeds/DatabaseSeeder.php 
 > add user and post seeds
 * views/*

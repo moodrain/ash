@@ -2,23 +2,23 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::any('login', 'UserController@login')->name('login');
-Route::any('register', 'UserController@register');
+Route::any('login', [\App\Http\Controllers\UserController::class, 'login'])->name('login');
+Route::any('register', [\App\Http\Controllers\UserController::class, 'register']);
 
 Route::middleware(['auth'])->group(function() {
 
     Route::view('/', 'index');
-    Route::post('logout', 'UserController@logout');
+    Route::post('logout', [\App\Http\Controllers\UserController::class, 'logout']);
 
-    Route::post('subject/upload', 'SubjectController@upload');
+    Route::post('subject/upload', [\App\Http\Controllers\SubjectController::class, 'upload']);
 
-    Route::any('subject/edit', 'SubjectController@edit');
-    Route::post('subject/comment', 'SubjectController@comment');
+    Route::any('subject/edit', [\App\Http\Controllers\SubjectController::class, 'edit']);
+    Route::post('subject/comment', [\App\Http\Controllers\SubjectController::class, 'comment']);
 
 });
 
-Route::get('subject', 'SubjectController@list');
-Route::get('subject/{subject}', 'SubjectController@show');
-Route::get('subject/upload/{file}', 'SubjectController@upload');
+Route::get('subject', [\App\Http\Controllers\SubjectController::class, 'list']);
+Route::get('subject/{subject}', [\App\Http\Controllers\SubjectController::class, 'show']);
+Route::get('subject/upload/{file}', [\App\Http\Controllers\SubjectController::class, 'upload']);
 
 require __DIR__ . '/admin.php';

@@ -70,7 +70,6 @@ class Model extends LaravelModel
         $totallyGuarded = $this->totallyGuarded();
         foreach ($this->fillableFromArray($attributes) as $key => $value) {
             $key = Str::snake($key);
-            $key = $this->removeTableFromKey($key);
             if ($this->isFillable($key)) {
                 $this->setAttribute($key, $value);
             } elseif ($totallyGuarded) {

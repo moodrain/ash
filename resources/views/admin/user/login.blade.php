@@ -8,10 +8,10 @@
             <el-col :span="6" :offset="9" :xs="{span:20,offset:2}">
                 <el-card>
                     <el-form>
-                        <x-input exp="model:form.email;pre:邮箱;ref:email" />
-                        <x-input exp="model:form.password;pre:密码;type:password" />
+                        <x-input exp="model:form.email;pre:email;ref:email" />
+                        <x-input exp="model:form.password;pre:password;type:password" />
                         <el-form-item>
-                            <el-button @click="login">登录</el-button>
+                            <el-button @click="login">{{ ___('login') }}</el-button>
                         </el-form-item>
                     </el-form>
                 </el-card>

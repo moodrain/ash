@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title', '注册')
+@section('title', 'register')
 @section('html')
     <div id="loading" style="position: absolute;z-index: 3000;background: #b4f3f4;width: 100%;height: 100%"></div>
     <div id="app">
@@ -8,14 +8,14 @@
             <el-col :span="6" :offset="9" :xs="{span:20,offset:2}">
                 <el-card>
                     <el-form>
-                        <x-input exp="model:form.email;pre:邮箱" />
-                        <x-input exp="model:form.name;pre:名称" />
-                        <x-input exp="model:form.password;pre:密码;type:password" />
-                        <x-input exp="model:form.rePassword;pre:重复密码;type:password" />
+                        <x-input exp="model:form.email;pre:email" />
+                        <x-input exp="model:form.name;pre:name" />
+                        <x-input exp="model:form.password;pre:password;type:password" />
+                        <x-input exp="model:form.rePassword;pre:re-password;type:password" />
                         <el-form-item>
-                            <el-button @click="register">注册</el-button>
+                            <el-button @click="register">{{ ___('register') }}</el-button>
                             <el-divider direction="vertical"></el-divider>
-                            <el-link href="/login">或 登录</el-link>
+                            <el-link href="/login">{{ ___('login') }}</el-link>
                         </el-form-item>
                     </el-form>
                 </el-card>
@@ -44,11 +44,11 @@
                 @include('piece.method')
                 register() {
                     if (! this.form.email || ! this.form.password || ! this.form.name) {
-                        alert('请完整填写表单')
+                        alert('{{ __('msg.form-not-finished') }}')
                         return
                     }
                     if (this.form.password != this.form.rePassword) {
-                        alert('两次密码不一致')
+                        alert('{{ __('msg.password-not-equal') }}')
                         return
                     }
                     $submit(this.form)

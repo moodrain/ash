@@ -68,7 +68,7 @@
                             <el-dropdown-menu slot="dropdown">
                                 @if(user())
                                     <el-dropdown-item><a href="/profile">{{ ___('profile') }}</a></el-dropdown-item>
-                                    <el-dropdown-item><a href="javascript:" onclick="document.querySelector('#logout').submit()">{{{ ___('profile') }}}</a></el-dropdown-item>
+                                    <el-dropdown-item><a href="javascript:" onclick="document.querySelector('#logout').submit()">{{{ ___('logout') }}}</a></el-dropdown-item>
                                 @else
                                     <el-dropdown-item><a href="/login">{{ ___('login') }}</a></el-dropdown-item>
                                     <el-dropdown-item><a href="/register">{{ ___('register') }}</a></el-dropdown-item>

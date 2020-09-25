@@ -19,6 +19,6 @@ Route::middleware(['auth'])->group(function() {
 
 Route::get('subject', [\App\Http\Controllers\SubjectController::class, 'list']);
 Route::get('subject/{subject}', [\App\Http\Controllers\SubjectController::class, 'show']);
-Route::get('subject/upload/{file}', [\App\Http\Controllers\SubjectController::class, 'upload']);
+Route::any('subject/upload/{file}', [\App\Http\Controllers\SubjectController::class, 'upload']);
 
 require __DIR__ . '/admin.php';

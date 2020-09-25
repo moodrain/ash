@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Gates\GateRegister;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
@@ -25,5 +26,6 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+        GateRegister::registerAll();
     }
 }

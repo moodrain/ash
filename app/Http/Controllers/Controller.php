@@ -83,4 +83,14 @@ class Controller extends BaseController
             return ers($e->getMessage());
         }
     }
+
+    protected function own($model, $ownerKey = null)
+    {
+        $this->authorize('own', [$model, $ownerKey]);
+    }
+
+    protected function isOwn()
+    {
+        return user()->can('own', [$model, $ownerKey]);
+    }
 }

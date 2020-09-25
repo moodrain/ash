@@ -50,7 +50,7 @@ class SubjectController extends Controller
             'title' => 'required',
             'categoryId' => 'required|exists:subject_categories,id',
             'content' => 'required',
-            'images' => 'array'
+            'images' => 'nullable|array'
         ];
         $isUpdate = request()->filled('id');
         $isUpdate && $this->rules['id'] = 'exists:subjects';
@@ -69,7 +69,7 @@ class SubjectController extends Controller
     public function update()
     {
         $subject = Subject::query()->find(request('id'));
-        abort_if($subject->userId != uid(), 403);
+        $this->own($subject);
         $subject->fill(request()->only(array_keys($this->rules)));
         $subject->save();
         return $this->viewOk('subject.edit', ['d' => $subject]);

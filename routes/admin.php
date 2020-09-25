@@ -4,9 +4,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::any('admin/login', [\App\Http\Controllers\Admin\UserController::class, 'login']);
 
-Route::prefix('admin')->middleware(['auth', 'admin'])->group(function() {
+Route::prefix('admin')->middleware(['auth', 'can:admin'])->group(function() {
 
     Route::view('/', 'admin/index');
+    Route::post('logout', [\App\Http\Controllers\Admin\UserController::class, 'logout']);
 
     Route::get('subject/list', [\App\Http\Controllers\Admin\SubjectController::class, 'list']);
     Route::any('subject/edit', [\App\Http\Controllers\Admin\SubjectController::class, 'edit']);

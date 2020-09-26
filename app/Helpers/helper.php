@@ -175,7 +175,8 @@ if (! function_exists('___'))
 {
     function ___($word)
     {
-        return __('word.' . $word);
+        $rs = __('word.' . $word);
+        return \Illuminate\Support\Str::startsWith($rs, 'word.') ? $word : $rs;
     }
 }
 

@@ -84,7 +84,7 @@ class Controller extends BaseController
 
     protected function modelName()
     {
-        $navs = config('view.admin.nav');
+        $navs = config('view.' . $this->admin ? 'admin' : '' . '.nav');
         $name = $m = $this->model();
         foreach ($navs as $nav) {
             if ($nav[0] == $m) {

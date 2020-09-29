@@ -14,8 +14,8 @@ class NavHelper
 
     public function resourceAdminNavs($models, $prefix = 'admin')
     {
-        return array_map(function($model) {
-            return $this->resourceAdminNav($model, $admin);
+        return array_map(function($model) use ($prefix) {
+            return $this->resourceAdminNav($model, $prefix);
         }, $models);
     }
 }

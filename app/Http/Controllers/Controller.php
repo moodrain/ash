@@ -23,7 +23,6 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        $this->admin && $this->middleware('can:admin');
         $this->admin && $this->prefix === null && $this->prefix = 'admin';
         $this->admin && $this->viewPrefix === null && $this->viewPrefix = 'admin';
         singleUser() && Auth::loginUsingId(singleUser()->id);

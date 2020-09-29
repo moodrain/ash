@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+
 class CommentController extends Controller
 {
+    protected $admin = true;
     protected $model = 'comment';
 
     public function list()

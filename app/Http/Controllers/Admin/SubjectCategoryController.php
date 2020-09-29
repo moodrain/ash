@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
 
 class SubjectCategoryController extends Controller
 {
+    protected $admin = true;
     protected $model = 'subject_category';
 
     public function list()

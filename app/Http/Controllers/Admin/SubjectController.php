@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Comment;
 
 class SubjectController extends Controller
 {
+    protected $admin = true;
     protected $model = 'subject';
 
     public function list()

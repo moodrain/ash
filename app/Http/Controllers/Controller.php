@@ -9,16 +9,26 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    protected $admin = false;
+    protected $prefix = null;
+    protected $viewPrefix = null;
+    protected $model = null;
+    protected $rules = [];
+
     public function __construct()
     {
+        $this->admin && $this->middleware('can:admin');
+        $this->admin && $this->prefix === null && $this->prefix = 'admin';
+        $this->admin && $this->viewPrefix === null && $this->viewPrefix = 'admin';
+        singleUser() && Auth::loginUsingId(singleUser()->id);
         $this->initSearch();
         $this->initSort();
-        singleUser() && Auth::loginUsingId(singleUser()->id);
     }
 
     private function initSearch()
@@ -48,19 +58,73 @@ class Controller extends BaseController
         return $builder->search($this->search)->sort();
     }
 
-    protected function vld($rules)
+    protected function vld($rules = null)
     {
-        $this->validate(request(), $rules);
+        return $this->validate(request(), $rules ?? $this->rules);
+    }
+
+    protected function builder(): \Illuminate\Database\Eloquent\Builder
+    {
+        return call_user_func([$this->modelClass(), 'query']);
+    }
+
+    protected function model()
+    {
+        return $this->model;
+    }
+
+    protected function modelClass()
+    {
+        $class = '';
+        $pieces = explode('_', $this->model());
+        foreach ($pieces as $piece) {
+            $class .= ('\\' . ucfirst($piece));
+        }
+        return 'App\\Models' . $class;
+    }
+
+    protected function modelName()
+    {
+        $navs = config('view.admin.nav');
+        $name = $m = $this->model();
+        foreach ($navs as $nav) {
+            if ($nav[0] == $m) {
+                $name = $nav[1];
+            }
+        }
+        return $name;
+    }
+
+    protected function table()
+    {
+        $class = $this->modelClass();
+        return (new $class)->getTable();
+    }
+
+    protected function view($view, $para = [])
+    {
+        $model = Str::snake(Str::camel($this->model()), '-');
+        $modelClass = $this->modelClass();
+        $modelName = $this->modelName();
+        $initPara = [
+            'm' => $model,
+            'modelClass' => $modelClass,
+            'modelName' => $modelName,
+            'prefix' => $this->prefix,
+        ];
+        empty($para['d']) && $initPara['d'] = null;
+        empty($para['l']) && $initPara['l'] = [];
+        return view(($this->viewPrefix ? endWith('.', $this->viewPrefix) : '') . ($model ? $model . '.' : '') . $view, array_merge($initPara, $para));
     }
 
     protected function viewOk($view, $para = [])
     {
-        return view($view, array_merge($para, ['msg' => __('msg.success')]));
+        return $this->view($view, array_merge($para, ['msg' => __('msg.success')]));
     }
 
     protected function directOk($uri)
     {
-        return redirect($uri)->with('msg', __('msg.success'));
+        return redirect(endWith('/', $this->prefix) . $uri)->with('msg', __('msg.success'));
     }
 
     protected function backOk()

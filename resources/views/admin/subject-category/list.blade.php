@@ -8,17 +8,22 @@
         <x-input exp="model:search.id;pre:id" />
         <x-input exp="model:search.name;pre:name" />
         <x-sort />
-        <x-admin.list-head-btn :m="$m" />
+        @include('admin.piece.list-head-btn')
     </el-form>
 </el-card>
 <br />
 <el-card>
+    @php
+        $cols = [
+            ['id', 'id', 60],
+            ['name', 'name'],
+            ['time', 'createdAt', 160],
+        ];
+    @endphp
     <el-table :data="list" height="560" border  @selection-change="selectChange">
         <el-table-column type="selection" width="55"></el-table-column>
-        <el-table-column prop="id" label="{{ ___('id') }}" width="60"></el-table-column>
-        <el-table-column prop="name" label="{{ ___('name') }}"></el-table-column>
-        <el-table-column prop="createdAt" label="{{ ___('time') }}" width="160"></el-table-column>
-        <x-admin.list-body-col :m="$m" />
+        <x-table-col :cols="$cols" />
+        @include('admin.piece.list-body-col')
     </el-table>
     <x-pager />
 </el-card>

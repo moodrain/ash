@@ -9,7 +9,7 @@ doDelete(id) {
         }).then(() => {
             let ids = []
             this.selects.forEach(e => ids.push(e.id))
-            $submit('/admin/{{ $m }}/destroy', {ids})
+            $submit('/{{ (empty($prefix) ? '' : endWith('/', $prefix)) . $m }}/destroy', {ids})
         }).catch(() => {})
     } else {
         this.$confirm('{{ ____('confirm delete ' . $modelName) }} ?', '{{ ___('confirm') }}', {
@@ -17,7 +17,7 @@ doDelete(id) {
             cancelButtonText: '{{ ___('cancel') }}',
             type: 'warning',
         }).then(() => {
-            $submit('/admin/{{ $m }}/destroy', {id})
+            $submit('/{{ (empty($prefix) ? '' : endWith('/', $prefix)) . $m }}/destroy', {id})
         }).catch(() => {})
     }
 },

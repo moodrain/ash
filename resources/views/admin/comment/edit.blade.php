@@ -6,7 +6,7 @@
         <el-col :span="8" :xs="24">
             <el-card>
                 <el-form>
-                    <x-admin.edit-id :d="$d" />
+                    @include('admin.piece.edit-id')
                     <x-select exp="model:form.subjectId;label:subject;key:id;selectLabel:title;value:id;data:subjects" />
                     <x-select exp="model:form.fromUserId;label:source user;key:id;selectLabel:name;value:id;data:users" />
                     <x-select exp="model:form.userId;label:target user;key:id;selectLabel:name;value:id;data:users" />
@@ -32,7 +32,7 @@
                         @endif
                     </el-card>
                     <br />
-                    <x-admin.edit-submit :d="$d" />
+                    @include('admin.piece.edit-submit')
                 </el-form>
             </el-card>
         </el-col>

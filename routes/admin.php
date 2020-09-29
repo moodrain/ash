@@ -2,24 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 
+$helper = new \App\Helpers\RouteHelper();
+
 Route::any('admin/login', [\App\Http\Controllers\Admin\UserController::class, 'login']);
 
-Route::prefix('admin')->middleware(['auth', 'can:admin'])->group(function() {
+Route::prefix('admin')->middleware(['auth', 'can:admin'])->group(function() use ($helper) {
 
     Route::view('/', 'admin/index');
     Route::post('logout', [\App\Http\Controllers\Admin\UserController::class, 'logout']);
 
-    Route::get('subject/list', [\App\Http\Controllers\Admin\SubjectController::class, 'list']);
-    Route::any('subject/edit', [\App\Http\Controllers\Admin\SubjectController::class, 'edit']);
-    Route::post('subject/destroy', [\App\Http\Controllers\Admin\SubjectController::class, 'destroy']);
-
-    Route::get('comment/list', [\App\Http\Controllers\Admin\CommentController::class, 'list']);
-    Route::any('comment/edit', [\App\Http\Controllers\Admin\CommentController::class, 'edit']);
-    Route::post('comment/destroy', [\App\Http\Controllers\Admin\CommentController::class, 'destroy']);
-
-    Route::get('subject-category/list', [\App\Http\Controllers\Admin\SubjectCategoryController::class, 'list']);
-    Route::any('subject-category/edit', [\App\Http\Controllers\Admin\SubjectCategoryController::class, 'edit']);
-    Route::post('subject-category/destroy', [\App\Http\Controllers\Admin\SubjectCategoryController::class, 'destroy']);
+    $helper->resourceAdminRoutes(['subject', 'comment', 'subject-category']);
 
     Route::get('explorer', [\App\Http\Controllers\Admin\ExplorerController::class, 'index']);
     Route::get('explorer/content', [\App\Http\Controllers\Admin\ExplorerController::class, 'content'])->name('explorer.content');

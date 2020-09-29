@@ -1,24 +1,15 @@
 <?php
 
+$helper = new \App\Helpers\NavHelper();
+
 return [
 
     'admin' => [
-        'nav' => [
+        'nav' => array_merge([
             ['dashboard', 'dash', 'admin'],
-            ['subject', 'subject', [
-                ['subject-list', 'subject list', 'admin/subject/list'],
-                ['subject-edit', 'subject edit', 'admin/subject/edit'],
-            ]],
-            ['comment', 'comment', [
-                ['comment-list', 'comment list', 'admin/comment/list'],
-                ['comment-edit', 'comment edit', 'admin/comment/edit'],
-            ]],
-            ['subject-category', 'subject-category', [
-                ['subject-category-list', 'subject-category list', 'admin/subject-category/list'],
-                ['subject-category-edit', 'subject-category edit', 'admin/subject-category/edit'],
-            ]],
+        ], $helper->resourceAdminNavs(['subject', 'comment', 'subject-category']), [
             ['explorer', 'explorer', 'admin/explorer'],
-        ],
+        ]),
     ],
 
     'user' => [

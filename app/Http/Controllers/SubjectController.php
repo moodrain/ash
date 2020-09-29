@@ -133,6 +133,4 @@ class SubjectController extends Controller
         }
     }
 
-    private $rules;
-
 }

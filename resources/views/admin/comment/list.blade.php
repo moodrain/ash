@@ -9,25 +9,30 @@
         <x-select exp="model:search.fromUserId;label:user;key:id;selectLabel:name;value:id;data:users" />
         <x-select exp="model:search.subjectId;label:subject;key:id;selectLabel:title;value:id;data:subjects" />
         <x-sort />
-        <x-admin.list-head-btn :m="$m" />
+        @include('admin.piece.list-head-btn')
     </el-form>
 </el-card>
 <br />
 <el-card>
+    @php
+    $cols = [
+        ['id', 'id', 60],
+        ['title', 'subject.title'],
+        ['comment id', 'commentId'],
+        ['user', 'from.name'],
+        ['content', 'contentShort'],
+        ['time', 'createdAt', 160],
+    ];
+    @endphp
     <el-table :data="list" height="560" border  @selection-change="selectChange">
         <el-table-column type="selection" width="55"></el-table-column>
-        <el-table-column prop="id" label="{{ ___('id') }}" width="60"></el-table-column>
-        <el-table-column prop="subject.title" label="{{ ___('title') }}"></el-table-column>
-        <el-table-column prop="from.name" label="{{ ___('user') }}"></el-table-column>
-        <el-table-column prop="contentShort" label="{{ ___('content') }}"></el-table-column>
+        <x-table-col :cols="$cols" />
         <el-table-column label="{{ ___('image') }}">
             <template slot-scope="scope">
                 <el-image @click="$open(src)" style="max-width:20%;margin: 1%;cursor: pointer" fit="contain" v-for="(src, index) in scope.row.images" :key="index" :src="src"></el-image>
             </template>
         </el-table-column>
-        <el-table-column prop="commentId" label="{{ ____('comment id') }}"></el-table-column>
-        <el-table-column prop="createdAt" label="{{ ___('time') }}" width="160"></el-table-column>
-        <x-admin.list-body-col :m="$m" />
+        @include('admin.piece.list-body-col')
     </el-table>
     <x-pager />
 </el-card>

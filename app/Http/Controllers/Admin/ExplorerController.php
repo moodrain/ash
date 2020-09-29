@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use function GuzzleHttp\Psr7\mimetype_from_filename;
 
 class ExplorerController extends Controller
 {
+    protected $admin = true;
     private $base;
 
     public function __construct()

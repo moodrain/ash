@@ -7,7 +7,7 @@
     <el-col :span="8" :xs="24">
         <el-card>
             <el-form>
-                <x-admin.edit-id :d="$d" />
+                @include('admin.piece.edit-id')
                 <x-input exp="model:form.title;pre:title" />
                 <x-select exp="model:form.categoryId;label:category;key:id;selectLabel:name;value:id;data:categories" />
                 <x-input exp="model:form.content;label:content;type:textarea;row:4" />

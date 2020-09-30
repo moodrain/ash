@@ -84,7 +84,12 @@ class Controller extends BaseController
 
     protected function modelName()
     {
-        $navs = config('view.' . $this->admin ? 'admin' : '' . '.nav');
+        $device = mobile() ? 'mobile' : 'pc';
+        $key = 'view.';
+        $key .= ($this->admin ? 'admin' : 'user');
+        $key .= '.nav';
+        $key .= ($this->admin ? '' : ".$device");
+        $navs = config($key);
         $name = $m = $this->model();
         foreach ($navs as $nav) {
             if ($nav[0] == $m) {

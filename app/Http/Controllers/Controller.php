@@ -128,7 +128,7 @@ class Controller extends BaseController
 
     protected function directOk($uri)
     {
-        return redirect(endWith('/', $this->prefix) . $uri)->with('msg', __('msg.success'));
+        return redirect(endWith('/', $this->viewPrefix) . $uri)->with('msg', __('msg.success'));
     }
 
     protected function backOk()

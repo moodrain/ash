@@ -76,5 +76,6 @@ class Model extends LaravelModel
                 throw new MassAssignmentException(sprintf('Add [%s] to fillable property to allow mass assignment on [%s].', $key, get_class($this)));
             }
         }
+        return $this;
     }
 }

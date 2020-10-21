@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\RequestLog;
+use App\Http\Middleware\StringToBool;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -24,6 +25,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
 
         RequestLog::class,
+        StringToBool::class,
     ];
 
     /**

@@ -1,3 +1,3 @@
 @section('title')
-    {{ $modelName }} edit
+    {{ str_replace('_', ' ', $m) }} edit
 @endsection

@@ -8,5 +8,5 @@ sort: {
 list: @json($l).data,
 page: {{ $l->currentPage() }},
 total: {{ $l->total() }},
-sortOptions: @json(get_class_vars($modelClass)['sortRule']),
+sortOptions: @json(get_class_vars($mClass)['sortRule']),
 @include('admin.piece.list-search')

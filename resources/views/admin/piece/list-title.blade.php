@@ -1,3 +1,3 @@
 @section('title')
-    {{ $modelName }} list
+    {{ str_replace('_', ' ', $m) }} list
 @endsection

@@ -9,7 +9,7 @@ starter of Laravel & Vue & ElementUI & Rium
 * app/Kernel.php
 > remove csrf token verify
 > remove require console.php
-> add Admin, RequestLog middleware
+> add Admin, RequestLog, StringToBool middleware
 * app/Models/Model.php
 * app/Models/Builder.php
 * app/Models/User.php

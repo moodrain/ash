@@ -20,6 +20,14 @@
         v-model="{{ $model }}"
         @endisset
 
+        @isset($on)
+        active-text="{{ ____($on) }}"
+        @endisset
+
+        @isset($off)
+        inactive-text="{{ ____($off) }}"
+        @endisset
+
     >
     </el-switch>
 </el-form-item>

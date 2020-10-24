@@ -6,10 +6,11 @@ class NavHelper
 {
     public function resourceAdminNav($model, $prefix = 'admin')
     {
-        $prefix && $prefix = endWith('/', $prefix);
-        return [$model, $model, [
-            ["$model-list", "$model list", "$prefix$model/list"],
-            ["$model-edit", "$model edit", "$prefix$model/edit"],
+        $path = $prefix . ($prefix ? '/' : '') . str_replace('_', '/', $model);
+        $name = str_replace('_', ' ', $model);
+        return [$model, $name, [
+            ["$model-list", "$name list", "$path/list"],
+            ["$model-edit", "$name edit", "$path/edit"],
         ]];
     }
 

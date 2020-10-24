@@ -16,15 +16,11 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     protected $admin = false;
-    protected $prefix = null;
-    protected $viewPrefix = null;
     protected $model = null;
     protected $rules = [];
 
     public function __construct()
     {
-        $this->admin && $this->prefix === null && $this->prefix = 'admin';
-        $this->admin && $this->viewPrefix === null && $this->viewPrefix = 'admin';
         singleUser() && Auth::loginUsingId(singleUser()->id);
         $this->initSearch();
         $this->initSort();
@@ -77,26 +73,30 @@ class Controller extends BaseController
         $class = '';
         $pieces = explode('_', $this->model());
         foreach ($pieces as $piece) {
+            $piece = Str::camel($piece);
             $class .= ('\\' . ucfirst($piece));
         }
         return 'App\\Models' . $class;
     }
 
-    protected function modelName()
+    protected function modelBase()
     {
-        $device = mobile() ? 'mobile' : 'pc';
-        $key = 'view.';
-        $key .= ($this->admin ? 'admin' : 'user');
-        $key .= '.nav';
-        $key .= ($this->admin ? '' : ".$device");
-        $navs = config($key);
-        $name = $m = $this->model();
-        foreach ($navs as $nav) {
-            if ($nav[0] == $m) {
-                $name = $nav[1];
-            }
-        }
-        return $name;
+        return last(explode('_', $this->model()));
+    }
+
+    protected function prefix()
+    {
+        return ($this->admin ? 'admin/' : '') . ($this->model() ? $this->model() : '');
+    }
+
+    protected function urlPrefix()
+    {
+        return str_replace('_', '/', $this->prefix());
+    }
+
+    protected function viewPrefix()
+    {
+        return str_replace('_', '.', $this->prefix());
     }
 
     protected function table()
@@ -107,18 +107,15 @@ class Controller extends BaseController
 
     protected function view($view, $para = [])
     {
-        $model = Str::snake(Str::camel($this->model()), '-');
-        $modelClass = $this->modelClass();
-        $modelName = $this->modelName();
         $initPara = [
-            'm' => $model,
-            'modelClass' => $modelClass,
-            'modelName' => $modelName,
-            'prefix' => $this->prefix,
+            'm' => $this->model(),
+            'mBase' => $this->modelBase(),
+            'mClass' => $this->modelClass(),
+            'prefix' => $this->urlPrefix(),
         ];
         empty($para['d']) && $initPara['d'] = null;
         empty($para['l']) && $initPara['l'] = [];
-        return view(($this->viewPrefix ? endWith('.', $this->viewPrefix) : '') . ($model ? $model . '.' : '') . $view, array_merge($initPara, $para));
+        return view($this->viewPrefix() . '.' . $view, array_merge($initPara, $para));
     }
 
     protected function viewOk($view, $para = [])
@@ -128,7 +125,7 @@ class Controller extends BaseController
 
     protected function directOk($uri)
     {
-        return redirect(endWith('/', $this->viewPrefix) . $uri)->with('msg', __('msg.success'));
+        return redirect($this->urlPrefix() . '/' . $uri)->with('msg', __('msg.success'));
     }
 
     protected function backOk()
@@ -157,7 +154,7 @@ class Controller extends BaseController
         $this->authorize('own', [$model, $ownerKey]);
     }
 
-    protected function isOwn()
+    protected function isOwn($model, $ownerKey = null)
     {
         return user()->can('own', [$model, $ownerKey]);
     }

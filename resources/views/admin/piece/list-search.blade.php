@@ -1,6 +1,6 @@
 @php
     $search = [];
-    $keys = array_keys(get_class_vars($modelClass)['searchRule']);
+    $keys = array_keys(get_class_vars($mClass)['searchRule']);
     foreach ($keys as $key) {
         $keyInfo = explode('/', $key);
         $key = $keyInfo[0];

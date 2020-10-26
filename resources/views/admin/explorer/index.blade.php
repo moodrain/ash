@@ -26,7 +26,7 @@
                         </el-upload>
                     </el-form-item>
                     <el-form-item>
-                        <el-button @click="$submit('/admin/explorer/mkdir', {path})" icon="el-icon-folder-add"></el-button>
+                        <el-button @click="path && $submit('/admin/explorer/mkdir', {path})" icon="el-icon-folder-add"></el-button>
                     </el-form-item>
                 </el-form>
             </el-card>

@@ -8,12 +8,13 @@ Route::any('admin/login', [\App\Http\Controllers\Admin\UserController::class, 'l
 
 Route::middleware(['auth', 'can:admin'])->group(function() use ($helper) {
 
-    Route::view('/', 'admin/index');
-    Route::post('logout', [\App\Http\Controllers\Admin\UserController::class, 'logout']);
-
     $helper->resourceAdminRoutes(['subject', 'comment', 'subject-category']);
 
     Route::prefix('admin')->group(function() {
+
+        Route::view('/', 'admin/index');
+        Route::post('logout', [\App\Http\Controllers\Admin\UserController::class, 'logout']);
+
         Route::get('explorer', [\App\Http\Controllers\Admin\ExplorerController::class, 'index']);
         Route::get('explorer/content', [\App\Http\Controllers\Admin\ExplorerController::class, 'content'])->name('explorer.content');
         Route::post('explorer/upload', [\App\Http\Controllers\Admin\ExplorerController::class, 'upload']);

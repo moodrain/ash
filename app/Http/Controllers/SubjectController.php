@@ -9,6 +9,8 @@ use function GuzzleHttp\Psr7\mimetype_from_filename;
 
 class SubjectController extends Controller
 {
+    protected $model = 'subject';
+
     public function list()
     {
         $size = 20;
@@ -25,7 +27,7 @@ class SubjectController extends Controller
         };
         $subjects = $builder()->skip(request('page') * $size - $size)->take($size)->get();
         $total = $builder()->count();
-        return view('subject.list', compact('subjects', 'total'));
+        return $this->view('list', compact('subjects', 'total'));
     }
 
     public function show(Subject $subject)
@@ -38,7 +40,7 @@ class SubjectController extends Controller
         $total = $builder()->count();
         $subject->makeHidden('content');
         $comments->makeHidden('content');
-        return view('subject.item', compact('subject', 'comments', 'total'));
+        return $this->view('item', compact('subject', 'comments', 'total'));
     }
 
     public function edit()
@@ -63,7 +65,7 @@ class SubjectController extends Controller
         $subject = new Subject(request()->only(array_keys($this->rules)));
         $subject->userId = uid();
         $subject->save();
-        return $this->directOk('/subject/' . $subject->id);
+        return $this->directOk($subject->id);
     }
 
     public function update()
@@ -72,7 +74,7 @@ class SubjectController extends Controller
         $this->own($subject);
         $subject->fill(request()->only(array_keys($this->rules)));
         $subject->save();
-        return $this->viewOk('subject.edit', ['d' => $subject]);
+        return $this->viewOk('edit', ['d' => $subject]);
     }
 
     public function upload($file = null)
@@ -91,7 +93,7 @@ class SubjectController extends Controller
         $name = md5_file($tmp);
         $path = storage_path('app/upload/subject/' . $name . '.' . $ext);
         try {
-            rename($tmp, $path);
+            move_uploaded_file($tmp, $path);
             return rs('/subject/upload/' . $name . '.' . $ext);
         } catch (\Throwable $e) {
             return ers($e->getMessage());
@@ -126,7 +128,7 @@ class SubjectController extends Controller
             DB::commit();
             $query = ['page' => $page];
             ! $commentReply && $query['bottom'] = 1;
-            return $this->directOk('/subject/' . request('subjectId') . '?' . http_build_query($query));
+            return $this->directOk(request('subjectId') . '?' . http_build_query($query));
         } catch (\Exception $e) {
             DB::rollBack();
             return $this->backErr($e->getMessage());

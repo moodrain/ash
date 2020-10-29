@@ -128,9 +128,6 @@ if (! function_exists('bv')) {
             } elseif (is_array($obj)) {
                 $return = old($prop) ?? $obj[$prop] ?? $default;
             }
-            if ($return instanceof \Illuminate\Support\Collection || $return instanceof \Illuminate\Database\Eloquent\Collection) {
-                return $return->pluck('id')->all();
-            }
             return $return;
         }
         $obj = $objOrProp;

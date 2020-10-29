@@ -1,3 +1,4 @@
+@include('admin.piece.method')
 selectChange (selects) { this.selects = selects },
 more() { if(this.doMore) { this.doMore() } },
 doDelete(id) {

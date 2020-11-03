@@ -17,8 +17,8 @@ class Comment extends Model
         'subjectId/d' => '=',
         'commentId/d' => '=',
     ];
-
     public static $sortRule = ['id', 'content', 'userId', 'fromUserId', 'subjectId', 'commentId', 'createdAt', 'updatedAt'];
+    protected $relates = ['user', 'to', 'from', 'comments', 'comment', 'subject'];
 
     protected $appends = ['createdAtReadable', 'updatedAtReadable', 'contentShort', 'contentBase64'];
     protected $with = ['user', 'from', 'to'];

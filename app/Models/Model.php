@@ -12,6 +12,7 @@ class Model extends LaravelModel
 
     protected $hidden = ['deleted_at'];
     protected $guarded = ['id'];
+    protected $relates = [];
 
     public static $searchRule = ['id' => '='];
     public static $sortRule = ['id', 'createdAt', 'updatedAt'];
@@ -20,12 +21,12 @@ class Model extends LaravelModel
 
     public function getAttribute($key)
     {
-        return parent::getAttribute(in_array($key, $this->with) ? $key : Str::snake($key));
+        return parent::getAttribute(in_array($key, $this->relates) ? $key : Str::snake($key));
     }
 
     public function setAttribute($key, $value)
     {
-        return parent::setAttribute(in_array($key, $this->with) ? $key : Str::snake($key), $value);
+        return parent::setAttribute(in_array($key, $this->relates) ? $key : Str::snake($key), $value);
     }
 
     public function attributesToArray()

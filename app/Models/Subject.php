@@ -16,8 +16,8 @@ class Subject extends Model
         'userId/d' => '=',
         'categoryId/d' => '=',
     ];
-
     public static $sortRule = ['id', 'title', 'userId', 'categoryId', 'createdAt', 'updatedAt'];
+    protected $relates = ['user', 'category'];
 
     protected $appends = ['createdAtReadable', 'updatedAtReadable', 'contentShort', 'contentBase64'];
     protected $with = ['user', 'category'];

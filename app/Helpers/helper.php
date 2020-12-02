@@ -112,7 +112,8 @@ if (! function_exists('singleUser'))
     }
 }
 
-if (! function_exists('bv')) {
+if (! function_exists('bv'))
+{
     function bv($objOrProp, $default = '')
     {
         static $obj;
@@ -131,6 +132,15 @@ if (! function_exists('bv')) {
             return $return;
         }
         $obj = $objOrProp;
+    }
+}
+
+if (! function_exists('bvj'))
+{
+    function bvj($objOrProp, $default = '')
+    {
+        $return = bv($objOrProp, $default);
+        return is_string($return) ? $return : json_encode($return);
     }
 }
 
